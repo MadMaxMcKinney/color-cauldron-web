@@ -23,4 +23,4 @@
 
 <Footer />
 
-<Toaster toastOptions={{ style: 'border: 3px solid #3A300A; color: #3A300A;' }} />
+<Toaster toastOptions={{ style: 'border: 1px solid #D4D4D8; border-radius: 13px;' }} />

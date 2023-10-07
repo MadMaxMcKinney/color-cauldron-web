@@ -9,3 +9,8 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+::selection {
+    @apply bg-green-600;
+    color: #fff;
+}

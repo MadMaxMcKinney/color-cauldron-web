@@ -1,11 +1,9 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
     import { flip } from 'svelte/animate';
-    import logo from '$lib/assets/color-chef-logo.svg';
     import IconInfo from 'virtual:icons/ph/info-fill';
     import IconClose from 'virtual:icons/ph/x';
     import IconCookingPot from 'virtual:icons/ph/cooking-pot-fill';
-    import IconCopy from 'virtual:icons/ph/clipboard-text-fill';
     import type { PageData } from './$types';
     import { superForm } from 'sveltekit-superforms/client';
     import Palette from '$lib/components/Palette.svelte';
@@ -18,7 +16,7 @@
         async onResult({ result }) {
             if (result.type === 'success') {
                 // Result the current palette
-                fetchingPalette = true;
+                isFetchingPalette = true;
 
                 // Fetch the palette from the server
                 let res = await fetch(`/api/palette?prompt=${$form.prompt}`, {
@@ -30,13 +28,13 @@
                 palettes = [newPalette, ...palettes];
 
                 // Stop the loading animation
-                fetchingPalette = false;
+                isFetchingPalette = false;
             }
         }
     });
 
-    let showExamples: boolean = false;
-    let fetchingPalette: boolean = false;
+    let isShowingExamples: boolean = false;
+    let isFetchingPalette: boolean = false;
     let palettes: any[] = [];
 
     // Client side length limit for the prompt. The server will also check this.
@@ -55,8 +53,8 @@
     <div class="mt-16">
         <form method="POST" use:enhance>
             <div class="flex flex-col gap-2">
-                {#if showExamples}
-                    <button type="button" on:click={() => (showExamples = false)} class="flex gap-1 items-center self-end text-amber-600 font-medium transition-all hover:text-amber-500 hover:cursor-pointer">Hide examples <IconClose /></button>
+                {#if isShowingExamples}
+                    <button type="button" on:click={() => (isShowingExamples = false)} class="flex gap-1 items-center self-end text-amber-600 font-medium transition-all hover:text-amber-500 hover:cursor-pointer">Hide examples <IconClose /></button>
                     <div class="p-4 rounded-2xl border-amber-500 border-[3px] border-dashed text-amber-500 mb-4 mt-2">
                         <ul class="font-medium list-disc pl-4">
                             <li>Cozy painting vibes</li>
@@ -65,17 +63,9 @@
                         </ul>
                     </div>
                 {:else}
-                    <button type="button" on:click={() => (showExamples = true)} class="flex gap-1 items-center self-end text-amber-600 font-medium transition-all hover:text-amber-500 hover:cursor-pointer">Show examples <IconInfo /></button>
+                    <button type="button" on:click={() => (isShowingExamples = true)} class="flex gap-1 items-center self-end text-green-600 font-medium transition-all hover:text-amber-500 hover:cursor-pointer">Show examples <IconInfo /></button>
                 {/if}
-
-                <input
-                    name="prompt"
-                    placeholder="Beach wedding in Italy"
-                    class="border-[3px] border-dark-brown rounded-2xl p-3 w-full text-lg text-center font-medium text-dark-brown transition-all hover:shadow-lg hover:-translate-y-[2px] focus-visible:outline-amber-300 outline-offset-4"
-                    bind:value={$form.prompt}
-                />
-
-                <BrewInput />
+                <BrewInput bind:value={$form.prompt} loading={isFetchingPalette} />
                 <div class="flex items-center w-full justify-end gap-2">
                     {#if $errors.prompt}
                         <span class="font-medium text-red-600 flex-1">{$errors.prompt}</span>
@@ -85,18 +75,6 @@
             </div>
         </form>
     </div>
-    {#if fetchingPalette}
-        <div class="mt-8">
-            <div class="rounded-2xl w-full h-32 font-bold relative flex justify-center items-center overflow-hidden">
-                <span class="absolute z-10 flex flex-row gap-2 items-center"><IconCookingPot /> Palette in the oven. Cooking...</span>
-                <span class="bg-amber-300 w-full h-full animate-pulse-1" />
-                <span class="bg-amber-300 w-full h-full animate-pulse-2" />
-                <span class="bg-amber-300 w-full h-full animate-pulse-3" />
-                <span class="bg-amber-300 w-full h-full animate-pulse-4" />
-                <span class="bg-amber-300 w-full h-full animate-pulse-5" />
-            </div>
-        </div>
-    {/if}
     <div class="mt-16 flex flex-col gap-8">
         {#each palettes as palette (palette)}
             <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
