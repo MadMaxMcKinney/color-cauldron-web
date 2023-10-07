@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { fade } from 'svelte/transition';
     export let loading: boolean = false;
 </script>
 
@@ -16,15 +15,19 @@
                 fill="#22C55E"
                 class="animate-bubble-up-slow"
             />
-            <rect y="2.86743" width="18" height="5.13251" fill="url(#paint0_linear_35_600)" class="animate-pulse-1" />
         {/if}
-        <path
-            d="M1.41027 10.5C0.662946 11.7891 0 13.3555 0 14.8125C0 16.2734 0.478125 17.5234 1.28571 18.543V21.75H3.21429V20.2266C4.8375 21.2227 6.90268 21.75 9 21.75C11.0973 21.75 13.1625 21.2227 14.7857 20.2266V21.75H16.7143V18.543C17.5219 17.5234 18 16.2734 18 14.8125C18 13.3555 17.3371 11.7891 16.5897 10.5H18V8H14.7857H9H3.21429H0V10.5H1.41027Z"
-            fill="black"
-            class="transition-all {loading ? '' : '-translate-y-1'}"
-        />
+        <g class="origin-bottom {loading ? 'animate-cauldron-rock' : ''}">
+            {#if loading}
+                <rect y="3" width="18" height="5" fill="url(#paint0_linear_35_600)" class="animate-pulse-intense" />
+            {/if}
+            <path
+                d="M1.41027 10.5C0.662946 11.7891 0 13.3555 0 14.8125C0 16.2734 0.478125 17.5234 1.28571 18.543V21.75H3.21429V20.2266C4.8375 21.2227 6.90268 21.75 9 21.75C11.0973 21.75 13.1625 21.2227 14.7857 20.2266V21.75H16.7143V18.543C17.5219 17.5234 18 16.2734 18 14.8125C18 13.3555 17.3371 11.7891 16.5897 10.5H18V8H14.7857H9H3.21429H0V10.5H1.41027Z"
+                fill="black"
+                class="transition-all {loading ? '' : '-translate-y-1'}"
+            />
+        </g>
         <defs>
-            <linearGradient id="paint0_linear_35_600" x1="9" y1="2.86743" x2="9" y2="7.99994" gradientUnits="userSpaceOnUse">
+            <linearGradient id="paint0_linear_35_600" x1="9" y1="3" x2="9" y2="7.99994" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#00C853" stop-opacity="0" />
                 <stop offset="1" stop-color="#00C853" />
             </linearGradient>
