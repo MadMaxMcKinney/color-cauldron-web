@@ -36,6 +36,7 @@ export const GET: RequestHandler = async ({ url }) => {
     }
 
     // TODO: Make sure the response is valid. The model is not perfect and sometimes responds with additional information beyond the array of colors. We should ideally only return the array of colors.
-    console.dir('Palette generated: ', newPalette);
+    console.log('Palette generated:');
+    console.dir(newPalette);
     return Response.json(newPalette);
 };
