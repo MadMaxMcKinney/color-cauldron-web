@@ -2,7 +2,7 @@
     import Container from './Container.svelte';
 </script>
 
-<footer class="pb-6 pt-24">
+<footer class="py-4 mt-24 bg-white">
     <Container>
         <div class="flex justify-between items-center gap-8">
             <p class="text-sm sm:text-base text-zinc-400 font-medium">
