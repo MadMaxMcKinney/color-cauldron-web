@@ -4,8 +4,6 @@
 
     import heroCauldron from '$lib/assets/videos/cauldron-hero-v3.mp4';
     import OverviewCard from '$lib/components/OverviewCard.svelte';
-
-    import imageHeroQuicklySave from '$lib/assets/heroes/quickly-save-hero.svg';
 </script>
 
 <div class="animate-fade-in">
@@ -21,9 +19,9 @@
                 <source src={heroCauldron} type="video/mp4" />
             </video>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-[100px]">
-                <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." image="https://picsum.photos/seed/1/400/200" alt="Random" />
-                <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." image={imageHeroQuicklySave} alt="Color palette with a grid" />
-                <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." image="https://picsum.photos/seed/1/400/200" alt="Random" size="double" />
+                <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." />
+                <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." />
+                <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." size="double" />
             </div>
         </section>
     </Container>
