@@ -1,9 +1,6 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
     import { flip } from 'svelte/animate';
-    import IconInfo from 'virtual:icons/ph/info-fill';
-    import IconClose from 'virtual:icons/ph/x';
-    import IconCookingPot from 'virtual:icons/ph/cooking-pot-fill';
     import type { PageData } from './$types';
     import { superForm } from 'sveltekit-superforms/client';
     import Palette from '$lib/components/Palette.svelte';
@@ -33,7 +30,6 @@
         }
     });
 
-    let isShowingExamples: boolean = false;
     let isFetchingPalette: boolean = false;
     let palettes: any[] = [];
 
@@ -45,7 +41,7 @@
     }
 </script>
 
-<div class="max-w-[500px] px-6 flex flex-col mx-auto">
+<div class="max-w-[500px] px-6 flex flex-col mx-auto animate-fade-in">
     <section class="mt-14 flex flex-col gap-4">
         <p class="font-bold text-3xl font-serif">Brew a palette</p>
         <p class="font-medium text-lg w-full text-zinc-600">Describe how you would use the colors, then sit back and let the magic happen.</p>
@@ -53,24 +49,14 @@
     <div class="mt-16">
         <form method="POST" use:enhance>
             <div class="flex flex-col gap-2">
-                {#if isShowingExamples}
-                    <button type="button" on:click={() => (isShowingExamples = false)} class="flex gap-1 items-center self-end text-amber-600 font-medium transition-all hover:text-amber-500 hover:cursor-pointer">Hide examples <IconClose /></button>
-                    <div class="p-4 rounded-2xl border-amber-500 border-[3px] border-dashed text-amber-500 mb-4 mt-2">
-                        <ul class="font-medium list-disc pl-4">
-                            <li>Cozy painting vibes</li>
-                            <li>Surprise party for someone who likes the military</li>
-                            <li>Lord of the rings</li>
-                        </ul>
-                    </div>
-                {:else}
-                    <button type="button" on:click={() => (isShowingExamples = true)} class="flex gap-1 items-center self-end text-green-600 font-medium transition-all hover:text-amber-500 hover:cursor-pointer">Show examples <IconInfo /></button>
-                {/if}
                 <BrewInput bind:value={$form.prompt} loading={isFetchingPalette} />
                 <div class="flex items-center w-full justify-end gap-2">
                     {#if $errors.prompt}
                         <span class="font-medium text-red-600 flex-1">{$errors.prompt}</span>
                     {/if}
-                    <span class="text-dark-brown font-medium text-sm">{$form.prompt.length}/100</span>
+                    {#if $form.prompt.length > 80}
+                        <span class="text-zinc-500 font-medium text-sm">{$form.prompt.length}/100</span>
+                    {/if}
                 </div>
             </div>
         </form>

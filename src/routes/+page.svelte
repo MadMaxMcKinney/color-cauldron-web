@@ -3,18 +3,26 @@
     import HeroButton from '$lib/components/HeroButton.svelte';
 
     import heroCauldron from '$lib/assets/videos/cauldron-hero-v3.mp4';
+    import OverviewCard from '$lib/components/OverviewCard.svelte';
 </script>
 
-<Container>
-    <section class="pt-10 sm:pt-20 relative">
-        <h1 class="text-4xl md:text-5xl max-w-lg leading-snug font-bold font-serif">Brew beautiful palettes with the magic of AI.</h1>
-        <p class="mt-10 text-xl font-medium max-w-lg">Easily create mystical color palettes by describing how you would use the colors, then sit back and let the magic happen.</p>
-        <div class="flex flex-col gap-4 items-start">
-            <HeroButton text="Start brewing" icon="fa-sharp fa-regular fa-wand-sparkles" class="mt-16" url="/brew" />
-            <span class="ml-2 text-zinc-400 font-medium"><i class="fa-brands fa-github" /> 100% free and <a class="underline transition-colors hover:text-zinc-300" href="#">open source</a></span>
-        </div>
-        <video autoplay loop muted playsinline class="fixed -bottom-[400px] -left-40 md:top-[450px] -z-10 max-w-[1000px] sm:left-[60%] sm:-translate-x-[50%]">
-            <source src={heroCauldron} type="video/mp4" />
-        </video>
-    </section>
-</Container>
+<div class="animate-fade-in">
+    <Container>
+        <section class="pt-10 sm:pt-20 relative">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl max-w-[700px] leading-snug font-bold font-serif">Brew beautiful palettes with the magic of AI.</h1>
+            <p class="mt-10 text-xl font-medium max-w-lg">Easily create mystical color palettes by describing how you would use the colors, then sit back and let the magic happen.</p>
+            <div class="flex flex-col gap-4 items-start">
+                <HeroButton text="Start brewing" icon="fa-sharp fa-regular fa-wand-sparkles" class="mt-16" url="/brew" />
+                <span class="ml-2 text-zinc-400 font-medium"><i class="fa-brands fa-github" /> 100% free and <a class="underline transition-colors hover:text-zinc-300" href="#">open source</a></span>
+            </div>
+            <video autoplay loop muted playsinline class="absolute -right-[140px] top-[300px] md:-right-[150px] md:top-[200px] w-[780px] -z-10">
+                <source src={heroCauldron} type="video/mp4" />
+            </video>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-[100px]">
+                <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." image="https://picsum.photos/seed/1/400/200" alt="Random" />
+                <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." image="https://picsum.photos/seed/1/400/200" alt="Random" />
+                <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." image="https://picsum.photos/seed/1/400/200" alt="Random" size="double" />
+            </div>
+        </section>
+    </Container>
+</div>

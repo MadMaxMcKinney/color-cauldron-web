@@ -6,12 +6,12 @@
 </script>
 
 <svelte:head>
-    <title>Color Chef - AI Generative Color Palettes</title>
-    <meta name="description" content="Generate a color palette by describing how it will be used. The Chef will do the rest, sit back and enjoy!" />
-    <meta property="og:title" content="Color Chef - AI Generative Color Palettes" />
+    <title>Color Cauldron - AI Generative Color Palettes</title>
+    <meta name="description" content="Brew beautiful palettes with the magic of AI." />
+    <meta property="og:title" content="Color Cauldron - AI Generative Color Palettes" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Generate a color palette by describing how it will be used. The Chef will do the rest, sit back and enjoy!" />
-    <meta property="og:image" content="https://colorchef.app/color-chef-openg-image.png" />
+    <meta property="og:description" content="Brew beautiful palettes with the magic of AI." />
+    <meta property="og:image" content="https://colorcauldron.app/color-cauldron-openg-image.png" />
     <link rel="shortcut icon" href="/favicon.png" />
 </svelte:head>
 

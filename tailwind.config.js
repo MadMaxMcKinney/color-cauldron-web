@@ -24,7 +24,18 @@ export default {
                     '0%': { opacity: 1 },
                     '50%': { opacity: 0.2 },
                     '100%': { opacity: 1 }
+                },
+                fadeIn: {
+                    '0%': { opacity: 0 },
+                    '100%': { opacity: 1 }
+                },
+                fadeInUp: {
+                    '0%': { opacity: 0, transform: 'translateY(10px)' },
+                    '100%': { opacity: 1, transform: 'translateY(0px)' }
                 }
+            },
+            boxShadow: {
+                card: '0px 0px 2px 0px rgba(0, 0, 0, 0.25)'
             },
             animation: {
                 'pulse-1': 'pulse 1s linear infinite',
@@ -35,7 +46,11 @@ export default {
                 'bubble-up': 'bubbleUp 2s ease-in-out infinite',
                 'bubble-up-slow': 'bubbleUp 3.5s ease-in-out infinite',
                 'cauldron-rock': 'cauldronRock 1.5s ease-in-out alternate infinite',
-                'pulse-intense': 'pulseIntense 1s ease-in-out infinite'
+                'pulse-intense': 'pulseIntense 1s ease-in-out infinite',
+                'fade-in': 'fadeIn 1s ease-in-out',
+                'fade-in-slow': 'fadeIn 2s ease-in-out',
+                'fade-in-slower': 'fadeIn 3s ease-in-out',
+                'fade-in-up': 'fadeInUp 1s ease-in-out'
             }
         }
     },
