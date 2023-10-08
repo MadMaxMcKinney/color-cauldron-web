@@ -29,6 +29,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"motion": "^10.16.4",
 		"openai": "^4.0.0",
 		"svelte-french-toast": "^1.2.0"
 	}
