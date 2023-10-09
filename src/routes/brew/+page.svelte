@@ -16,7 +16,7 @@
                 isFetchingPalette = true;
 
                 // Fetch the palette from the server
-                let res = await fetch(`/api/palette?prompt=${$form.prompt}`, {
+                let res = await fetch(`/api/brew?prompt=${$form.prompt}`, {
                     method: 'GET'
                 });
 

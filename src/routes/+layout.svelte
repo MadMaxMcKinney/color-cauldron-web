@@ -13,6 +13,7 @@
     <meta property="og:description" content="Brew beautiful palettes with the magic of AI." />
     <meta property="og:image" content="https://colorcauldron.app/color-cauldron-openg-image.png" />
     <link rel="shortcut icon" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </svelte:head>
 
 <TopNav />
