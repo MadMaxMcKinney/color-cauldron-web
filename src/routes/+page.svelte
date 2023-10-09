@@ -15,10 +15,10 @@
                 <HeroButton text="Start brewing" icon="fa-sharp fa-regular fa-wand-sparkles" class="mt-16" url="/brew" />
                 <span class="ml-2 text-zinc-400 font-medium"><i class="fa-brands fa-github" /> 100% free and <a class="underline transition-colors hover:text-zinc-300" href="#">open source</a></span>
             </div>
-            <video autoplay loop muted playsinline class="absolute sm:-right-[150px] sm:top-[300px] md:top-[250px] lg:top-[200px] w-[780px] -z-10">
+            <video autoplay loop muted playsinline class="absolute -left-[70px] mt-6 sm:left-auto sm:-right-[150px] sm:top-[300px] md:top-[250px] lg:top-[200px] w-[780px] -z-10">
                 <source src={heroCauldron} type="video/mp4" />
             </video>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-[100px]">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-[160px] sm:mt-[100px]">
                 <OverviewCard title="The only limit is your imagination" description="Powered by the GPT-3.5 ML model trained with additional context, brewing a color palette has never been easier." type="imagination"/>
                 <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." type="quickly-save" />
                 <OverviewCard title="Accessible API for everyone" description="Copy a color with a single click, or save the whole palette to your device for offline reference." size="double" type="api"/>
