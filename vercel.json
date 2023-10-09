@@ -1,6 +1,6 @@
 {
     "functions": {
-        "api/brew.js": {
+        "api/brew": {
             "memory": 3008,
             "maxDuration": 30
         }
