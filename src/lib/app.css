@@ -10,11 +10,18 @@ body {
     flex-direction: column;
 }
 
-html, body {
+html,
+body {
     overflow-x: hidden;
 }
 
 ::selection {
     @apply bg-green-600;
     color: #fff;
+}
+
+.tippy-box[data-theme~='cauldron'] {
+    @apply bg-zinc-200;
+    @apply text-zinc-500;
+    border-radius: 7px;
 }

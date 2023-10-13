@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import toast from 'svelte-french-toast';
+    import {tooltip} from '$lib/actions'
     import {getLegibleTextColorFromHex} from '$lib/utils'
 
     export let palette: Palette;
@@ -58,7 +59,7 @@
 <div class="flex flex-col rounded-[13px] border border-zinc-200 overflow-hidden h-[160px]">
     <div class="flex flex-row overflow-hidden w-full h-full">
         {#each palette.colors as color}
-            <button class="h-full w-full flex justify-center items-center group transition-all hover:shadow-2xl hover:z-10 hover:scale-110 active:scale-100" style="background-color: {color.hex};" on:click={() => copyColor(color)}>
+            <button class="h-full w-full flex justify-center items-center group transition-all hover:shadow-2xl hover:z-10 hover:scale-110 active:scale-100" style="background-color: {color.hex};" on:click={() => copyColor(color)} use:tooltip={color.name}>
                 <span class="flex justify-center items-center text-xl bg-white rounded-full w-10 h-10 transition-all opacity-0 group-hover:opacity-100"><i class="fa-sharp fa-regular fa-clipboard" /></span>
             </button>
         {/each}

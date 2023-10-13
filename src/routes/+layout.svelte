@@ -3,6 +3,7 @@
     import Footer from '$lib/components/Footer.svelte';
     import TopNav from '$lib/components/TopNav.svelte';
     import { Toaster } from 'svelte-french-toast';
+    import 'tippy.js/dist/tippy.css';
 </script>
 
 <svelte:head>
