@@ -21,7 +21,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-[160px] sm:mt-[100px]">
                 <OverviewCard title="The only limit is your imagination" description="Powered by the GPT-3.5 ML model trained with additional context, brewing a color palette has never been easier." type="imagination"/>
                 <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." type="quickly-save" />
-                <OverviewCard title="Accessible API for everyone" description="Copy a color with a single click, or save the whole palette to your device for offline reference." size="double" type="api"/>
+                <OverviewCard title="Accessible API for everyone" description="Want to brew some palettes in your own projects? It's free and without rate limits, so play nice with it!" size="double" type="api"/>
             </div>
         </section>
     </Container>

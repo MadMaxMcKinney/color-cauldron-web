@@ -2,6 +2,7 @@
     import HeroQuicklySave from '$lib/components/heroes/HeroQuicklySave.svelte';
     import HeroApi from '$lib/components/heroes/HeroApi.svelte';
     import HeroImagination from '$lib/components/heroes/HeroImagination.svelte';
+    import HeroImaginationBig from '$lib/components/heroes/HeroImaginationBig.svelte';
 
     export let title: string;
     export let description: string;
@@ -29,7 +30,7 @@
             <HeroQuicklySave />
         {/if}
         {#if type == 'imagination'}
-            <HeroImagination />
+            <HeroImaginationBig />
         {/if}
         {#if type == 'api'}
             <HeroApi/>
