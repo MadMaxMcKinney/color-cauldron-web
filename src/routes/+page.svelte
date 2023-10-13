@@ -13,7 +13,7 @@
             <p class="mt-10 text-xl font-medium max-w-lg">Easily create mystical color palettes by describing how you would use the colors, then sit back and let the magic happen.</p>
             <div class="flex flex-col gap-4 items-start">
                 <HeroButton text="Start brewing" icon="fa-sharp fa-regular fa-wand-sparkles" class="mt-16" url="/brew" />
-                <span class="ml-2 text-zinc-400 font-medium"><i class="fa-brands fa-github" /> 100% free and <a class="underline transition-colors hover:text-zinc-300" href="#">open source</a></span>
+                <span class="ml-2 text-zinc-400 font-medium"><i class="fa-brands fa-github" /> 100% free and <a class="underline transition-colors hover:text-zinc-300" href="https://github.com/MadMaxMcKinney/color-cauldron-web">open source</a></span>
             </div>
             <video autoplay loop muted playsinline class="absolute -left-[70px] mt-6 sm:left-auto sm:-right-[150px] sm:top-[300px] md:top-[250px] lg:top-[200px] w-[780px] -z-10">
                 <source src={heroCauldron} type="video/mp4" />
