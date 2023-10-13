@@ -1,7 +1,10 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
     import toast from 'svelte-french-toast';
 
     export let palette: Palette;
+    let paletteDataURI: string;
+    let elemPaletteDownload: HTMLAnchorElement;
 
     /**
      * Copy the color to the clipboard
@@ -11,6 +14,32 @@
         navigator.clipboard.writeText(color.hex);
         toast.success(`Copied to clipboard ${color.hex}`);
     }
+
+    function setDownloadForPalette(palette: Palette) {
+        // Create a canvas to draw the palette on so that we can later download it
+        let c: HTMLCanvasElement = document.createElement('canvas');
+        const canvasWidth = 100;
+        const canvasHeight = 30;
+        c.width = canvasWidth;
+        c.height = canvasHeight;
+
+        let ctx = c.getContext('2d');
+
+        // Add each color to the canvas
+        if (ctx) {
+            palette.colors.forEach((color, i) => {
+                ctx!.fillStyle = color.hex;
+                ctx!.fillRect((i * canvasWidth) / 5, 0, canvasWidth / 5, canvasHeight);
+            });
+        }
+
+        elemPaletteDownload.href = c.toDataURL();
+
+    }
+
+    onMount(() => {
+        setDownloadForPalette(palette);
+    });
 </script>
 
 <div class="flex flex-col rounded-[13px] border border-zinc-200 overflow-hidden h-[160px]">
@@ -21,7 +50,14 @@
             </button>
         {/each}
     </div>
-    <div class="flex px-4 py-3">
-        <p class="font-medium text-lg leading-tight text-zinc-500">{palette.name}</p>
+    <div class="flex justify-between">
+        <div class="px-4 py-3">
+            <p class="font-medium text-lg leading-tight text-zinc-500">{palette.name}</p>
+        </div>
+        <div class="flex border-l border-zinc-200">
+            <a class="text-black hover:text-zinc-400 flex justify-center items-center transition-colors w-12 h-full text-base" href={paletteDataURI} download="{palette.name} palette" bind:this={elemPaletteDownload}>
+                <i class="fa-sharp fa-regular fa-down-from-dotted-line" />
+            </a>
+        </div>
     </div>
 </div>
