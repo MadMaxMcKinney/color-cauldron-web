@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import toast from 'svelte-french-toast';
+    import {getLegibleTextColorFromHex} from '$lib/utils'
 
     export let palette: Palette;
     let paletteDataURI: string;
@@ -18,23 +19,35 @@
     function setDownloadForPalette(palette: Palette) {
         // Create a canvas to draw the palette on so that we can later download it
         let c: HTMLCanvasElement = document.createElement('canvas');
-        const canvasWidth = 100;
-        const canvasHeight = 30;
+        const canvasWidth = 180;
+        const canvasHeight = 56;
+        const paletteColorHeight = 30;
+
         c.width = canvasWidth;
         c.height = canvasHeight;
 
         let ctx = c.getContext('2d');
-
-        // Add each color to the canvas
         if (ctx) {
+            // Add BG color to the canvas based on the first color the palette
+            ctx.fillStyle = palette.colors[0].hex;
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+            // Add each color
             palette.colors.forEach((color, i) => {
                 ctx!.fillStyle = color.hex;
-                ctx!.fillRect((i * canvasWidth) / 5, 0, canvasWidth / 5, canvasHeight);
+                ctx!.fillRect((i * canvasWidth) / 5, 0, canvasWidth / 5, paletteColorHeight);
             });
+            // Get a legible text and border color to be used based on the first color in the palette
+            const legibleColor = getLegibleTextColorFromHex(palette.colors[0].hex);
+            // Add border
+            ctx.fillStyle = legibleColor;
+            ctx.fillRect(0, paletteColorHeight, canvasWidth, 1);
+            // Add info text
+            ctx!.fillStyle = legibleColor;
+            ctx!.font = '10px sans-serif';
+            ctx!.fillText("colorcauldron.app", 4, paletteColorHeight + 17)
         }
 
         elemPaletteDownload.href = c.toDataURL();
-
     }
 
     onMount(() => {
