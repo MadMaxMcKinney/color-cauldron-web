@@ -8,13 +8,13 @@
 
 <svelte:head>
     <title>Color Cauldron - AI Generative Color Palettes</title>
-    <meta name="description" content="Brew beautiful palettes with the magic of AI." />
+    <meta name="description" content="AI powered, imagination driven. Brew beautiful palettes by describing how the colors will be used." />
     <meta property="og:title" content="Color Cauldron - AI Generative Color Palettes" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Brew beautiful palettes with the magic of AI." />
+    <meta property="og:description" content="AI powered, imagination driven. Brew beautiful palettes by describing how the colors will be used." />
     <meta property="og:image" content="https://colorcauldron.app/color-cauldron-openg-image.png" />
     <link rel="shortcut icon" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
 <TopNav />
