@@ -8,7 +8,8 @@ export default {
                 serif: ['Caudex', 'serif']
             },
             colors: {
-                'dark-brown': '#3A300A'
+                'dark-brown': '#3A300A',
+                'brand-green': '#34E776'
             },
             keyframes: {
                 bubbleUp: {

@@ -1,8 +1,8 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import toast from 'svelte-french-toast';
-    import {tooltip} from '$lib/actions'
-    import {getLegibleTextColorFromHex} from '$lib/utils'
+    import { tooltip } from '$lib/actions';
+    import { getLegibleTextColorFromHex } from '$lib/utils';
 
     export let palette: Palette;
     let paletteDataURI: string;
@@ -45,7 +45,7 @@
             // Add info text
             ctx!.fillStyle = legibleColor;
             ctx!.font = '10px sans-serif';
-            ctx!.fillText("colorcauldron.app", 4, paletteColorHeight + 17)
+            ctx!.fillText('colorcauldron.app', 4, paletteColorHeight + 17);
         }
 
         elemPaletteDownload.href = c.toDataURL();
@@ -59,18 +59,21 @@
 <div class="flex flex-col rounded-[13px] border border-zinc-200 overflow-hidden h-[160px]">
     <div class="flex flex-row overflow-hidden w-full h-full">
         {#each palette.colors as color}
-            <button class="h-full w-full flex justify-center items-center group transition-all hover:shadow-2xl hover:z-10 hover:scale-110 active:scale-100" style="background-color: {color.hex};" on:click={() => copyColor(color)} use:tooltip={color.name}>
+            <button class="h-full w-full flex justify-center items-center group transition-all hover:shadow-2xl hover:z-10 hover:scale-110 active:scale-100" style="background-color: {color.hex};" on:click={() => copyColor(color)} use:tooltip={`Copy ${color.hex}`}>
                 <span class="flex justify-center items-center text-xl bg-white rounded-full w-10 h-10 transition-all opacity-0 group-hover:opacity-100"><i class="fa-sharp fa-regular fa-clipboard" /></span>
             </button>
         {/each}
     </div>
     <div class="flex justify-between">
+        <!-- Palette name -->
         <div class="px-4 py-3">
             <p class="font-medium text-lg leading-tight text-zinc-500">{palette.name}</p>
         </div>
-        <div class="flex border-l border-zinc-200">
-            <a class="text-black hover:text-zinc-400 flex justify-center items-center transition-colors w-12 h-full text-base" href={paletteDataURI} download="{palette.name} palette" bind:this={elemPaletteDownload}>
-                <i class="fa-sharp fa-regular fa-down-from-dotted-line" />
+        <!-- Actions -->
+        <div class="flex">
+            <!-- Download -->
+            <a class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-12 h-full text-base" href={paletteDataURI} download="{palette.name} palette" bind:this={elemPaletteDownload} use:tooltip={'Download'}>
+                <i class="fa-sharp fa-regular fa-down-to-bracket text-lg" />
             </a>
         </div>
     </div>
