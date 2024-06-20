@@ -1,13 +1,22 @@
 import type { RequestHandler } from './$types';
 import { OPEN_AI_KEY } from '$env/static/private';
 import OpenAI from 'openai';
+import { RateLimiter } from 'sveltekit-rate-limiter/server';
+
+const limiter = new RateLimiter({
+    // A rate is defined as [number, unit]
+    IP: [120, 'm'] // IP address limiter
+});
 
 const openai = new OpenAI({
     apiKey: OPEN_AI_KEY
 });
 
-export const GET: RequestHandler = async ({ url }) => {
-    let prompt = url.searchParams.get('prompt');
+export const GET: RequestHandler = async (event) => {
+    // Every call to isLimited counts as a hit towards the rate limit for the event.
+    if (await limiter.isLimited(event)) Response.json({ error: 'Rate limit exceeded' }, { status: 429 });
+
+    let prompt = event.url.searchParams.get('prompt');
     const completion = await openai.chat.completions.create({
         messages: [
             {
