@@ -16,12 +16,11 @@ body {
 }
 
 ::selection {
-    @apply bg-green-600;
-    color: #fff;
+    @apply bg-green-600 text-white;
 }
 
 .tippy-box[data-theme~='cauldron'] {
-    @apply bg-zinc-200;
-    @apply text-zinc-500;
-    border-radius: 7px;
+    @apply bg-white;
+    @apply text-black;
+    @apply font-medium text-sm rounded-md font-sans;
 }

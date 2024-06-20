@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import toast from 'svelte-french-toast';
     import { tooltip } from '$lib/actions';
-    import { getLegibleTextColorFromHex } from '$lib/utils';
+    import { getContrastColorFromHex } from '$lib/utils';
 
     export let palette: Palette;
     let paletteDataURI: string;
@@ -14,15 +14,20 @@
      */
     function copyColor(color: PaletteColor) {
         navigator.clipboard.writeText(color.hex);
-        toast.success(`Copied to clipboard ${color.hex}`);
+        toast.success(`Copied to clipboard ${color.hex}`, {
+            iconTheme: {
+                primary: color.hex,
+                secondary: getContrastColorFromHex(color.hex)
+            }
+        });
     }
 
     function setDownloadForPalette(palette: Palette) {
         // Create a canvas to draw the palette on so that we can later download it
         let c: HTMLCanvasElement = document.createElement('canvas');
-        const canvasWidth = 180;
-        const canvasHeight = 56;
-        const paletteColorHeight = 30;
+        const canvasWidth = 300;
+        const canvasHeight = 256;
+        const paletteColorHeight = 210;
 
         c.width = canvasWidth;
         c.height = canvasHeight;
@@ -38,13 +43,13 @@
                 ctx!.fillRect((i * canvasWidth) / 5, 0, canvasWidth / 5, paletteColorHeight);
             });
             // Get a legible text and border color to be used based on the first color in the palette
-            const legibleColor = getLegibleTextColorFromHex(palette.colors[0].hex);
+            const legibleColor = getContrastColorFromHex(palette.colors[0].hex);
             // Add border
             ctx.fillStyle = legibleColor;
             ctx.fillRect(0, paletteColorHeight, canvasWidth, 1);
             // Add info text
             ctx!.fillStyle = legibleColor;
-            ctx!.font = '10px sans-serif';
+            ctx!.font = '14px sans-serif';
             ctx!.fillText('colorcauldron.app', 4, paletteColorHeight + 17);
         }
 
@@ -59,8 +64,8 @@
 <div class="flex flex-col rounded-[13px] border border-zinc-200 overflow-hidden h-[160px]">
     <div class="flex flex-row overflow-hidden w-full h-full">
         {#each palette.colors as color}
-            <button class="h-full w-full flex justify-center items-center group transition-all hover:shadow-2xl hover:z-10 hover:scale-110 active:scale-100" style="background-color: {color.hex};" on:click={() => copyColor(color)} use:tooltip={`Copy ${color.hex}`}>
-                <span class="flex justify-center items-center text-xl bg-white rounded-full w-10 h-10 transition-all opacity-0 group-hover:opacity-100"><i class="fa-sharp fa-regular fa-clipboard" /></span>
+            <button class="h-full w-full flex justify-center items-center group transition-all hover:shadow-[var(--shadow-color)] hover:shadow-xl hover:z-10 hover:scale-110 active:scale-100" style="background-color: {color.hex}; --shadow-color: {color.hex}" on:click={() => copyColor(color)}>
+                <span class="flex justify-center items-center text-xl bg-white rounded-full w-10 h-10 transition-all opacity-0 group-hover:opacity-100"><i class="fa-sharp fa-regular fa-copy" /></span>
             </button>
         {/each}
     </div>
