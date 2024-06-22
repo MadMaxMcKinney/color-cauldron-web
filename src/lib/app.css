@@ -20,7 +20,5 @@ body {
 }
 
 .tippy-box[data-theme~='cauldron'] {
-    @apply bg-white;
-    @apply text-black;
-    @apply font-medium text-sm rounded-md font-sans;
+    @apply bg-white text-black font-medium text-sm font-sans border border-zinc-200 shadow-sm rounded-xl;
 }

@@ -80,6 +80,9 @@
             <a class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-12 h-full text-base" href={paletteDataURI} download="{palette.name} palette" bind:this={elemPaletteDownload} use:tooltip={'Download'}>
                 <i class="fa-sharp fa-regular fa-down-to-bracket text-lg" />
             </a>
+            <button class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-12 h-full text-base" use:tooltip={'Favorite'}>
+                <i class="fa-regular fa-heart text-lg" />
+            </button>
         </div>
     </div>
 </div>
