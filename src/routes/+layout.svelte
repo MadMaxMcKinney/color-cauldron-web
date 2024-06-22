@@ -25,4 +25,4 @@
 
 <Footer />
 
-<Toaster toastOptions={{ style: 'border: 1px solid #D4D4D8; border-radius: 13px;' }} />
+<Toaster toastOptions={{ style: 'border: 1px solid #D4D4D8; border-radius: 13px;', position: 'bottom-center' }} />

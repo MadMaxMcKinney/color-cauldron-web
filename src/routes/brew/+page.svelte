@@ -46,11 +46,16 @@
             </div>
         </div>
     </div>
-    <div class="mt-16 flex flex-col gap-8">
-        {#each palettes as palette (palette)}
-            <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
-                <Palette {palette} />
+    {#if palettes.length > 0}
+        <section class="mt-16" in:fade={{ duration: 1000, delay: 700 }}>
+            <p class="font-bold text-lg font-serif mb-6">Recent creations</p>
+            <div class="flex flex-col gap-8">
+                {#each palettes as palette (palette)}
+                    <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
+                        <Palette {palette} />
+                    </div>
+                {/each}
             </div>
-        {/each}
-    </div>
+        </section>
+    {/if}
 </div>

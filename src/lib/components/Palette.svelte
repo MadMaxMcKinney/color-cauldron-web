@@ -7,6 +7,8 @@
     export let palette: Palette;
     let paletteDataURI: string;
     let elemPaletteDownload: HTMLAnchorElement;
+    // Whether the palette is being set as a favorite, but not yet saved
+    let isSettingAsFavorite: boolean = false;
 
     /**
      * Copy the color to the clipboard
@@ -56,6 +58,13 @@
         elemPaletteDownload.href = c.toDataURL();
     }
 
+    function savePaletteAsFavorite() {
+        if (isSettingAsFavorite) return;
+        // Save the palette as a favorite
+        isSettingAsFavorite = true;
+        toast.success('Saved as favorite');
+    }
+
     onMount(() => {
         setDownloadForPalette(palette);
     });
@@ -65,7 +74,7 @@
     <div class="flex flex-row overflow-hidden w-full h-full">
         {#each palette.colors as color}
             <button class="h-full w-full flex justify-center items-center group transition-all hover:shadow-[var(--shadow-color)] hover:shadow-xl hover:z-10 hover:scale-110 active:scale-100" style="background-color: {color.hex}; --shadow-color: {color.hex}" on:click={() => copyColor(color)}>
-                <span class="flex justify-center items-center text-xl bg-white rounded-full w-10 h-10 transition-all opacity-0 group-hover:opacity-100"><i class="fa-sharp fa-regular fa-copy" /></span>
+                <span class="flex justify-center items-center text-xl bg-white rounded-full w-10 h-10 transition-all opacity-0 group-hover:opacity-100"><i class="fa-regular fa-copy" /></span>
             </button>
         {/each}
     </div>
@@ -76,13 +85,14 @@
         </div>
         <!-- Actions -->
         <div class="flex">
+            <!-- Favorite -->
+            <button class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-10 h-full text-base" use:tooltip={{ text: 'Favorite' }} on:click={savePaletteAsFavorite}>
+                <i class={`${isSettingAsFavorite ? 'fa-solid' : 'fa-regular'} fa-heart text-lg`} />
+            </button>
             <!-- Download -->
-            <a class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-12 h-full text-base" href={paletteDataURI} download="{palette.name} palette" bind:this={elemPaletteDownload} use:tooltip={'Download'}>
+            <a class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-10 h-full text-base" href={paletteDataURI} download="{palette.name} palette" bind:this={elemPaletteDownload} use:tooltip={{ text: 'Download' }}>
                 <i class="fa-sharp fa-regular fa-down-to-bracket text-lg" />
             </a>
-            <button class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-12 h-full text-base" use:tooltip={'Favorite'}>
-                <i class="fa-regular fa-heart text-lg" />
-            </button>
         </div>
     </div>
 </div>

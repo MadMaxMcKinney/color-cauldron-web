@@ -12,6 +12,6 @@
             <CauldronLoader {loading} />
         </div>
         <input type="text" name="prompt" placeholder="Coffee shop for witches" class="w-full bg-zinc-100 ml-10 md:ml-16 px-4 rounded-none focus:outline-none" bind:value />
-        <button class="bg-[#3FF381] flex items-center justify-center px-4 whitespace-nowrap font-medium transition-all rounded-r-[13px] hover:bg-[#6dffa2] focus:outline-offset-4" disabled={loading}> Brew it! </button>
+        <button class="bg-[#3FF381] flex items-center justify-center px-4 whitespace-nowrap font-medium transition-all rounded-r-[13px] hover:bg-[#6dffa2] focus:outline-offset-4 active:bg-green-300" disabled={loading}> Brew it! </button>
     </div>
 </form>
