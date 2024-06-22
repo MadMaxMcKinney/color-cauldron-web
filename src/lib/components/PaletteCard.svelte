@@ -4,6 +4,9 @@
     import { tooltip } from '$lib/actions';
     import { getContrastColorFromHex } from '$lib/utils';
     import { favoritePalettes } from '$lib/stores';
+    import { fade, scale } from 'svelte/transition';
+    import Button from './Button.svelte';
+    import { text } from '@sveltejs/kit';
 
     // PROPS
     export let palette: Palette;
@@ -15,6 +18,7 @@
     let elemPaletteDownload: HTMLAnchorElement;
     // Whether the palette is being set as a favorite, but not yet saved so we don't want to show the additional saved palette controls
     let isSettingAsFavorite: boolean = false;
+    let isExpanded: boolean = false;
 
     function copyColor(color: PaletteColor) {
         navigator.clipboard.writeText(color.hex);
@@ -95,7 +99,7 @@
             </button>
         {/each}
     </div>
-    <div class="flex justify-between">
+    <div class="flex justify-between bg-white">
         <!-- Palette name -->
         <div class="px-4 py-3">
             <p class="font-medium text-lg leading-tight text-zinc-500">{palette.name}</p>
@@ -113,6 +117,10 @@
             <a class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-10 h-full text-base" href={paletteDataURI} download="{palette.name} palette" bind:this={elemPaletteDownload} use:tooltip={{ text: 'Download' }}>
                 <i class="fa-regular fa-download text-lg" />
             </a>
+            <!-- Expand -->
+            <button class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-10 h-full text-base" use:tooltip={{ text: 'Expand' }} on:click={() => (isExpanded = true)}>
+                <i class={`fa-regular fa-up-right-and-down-left-from-center text-lg`} />
+            </button>
             {#if isFavorite}
                 <span class="h-full w-[1px] bg-zinc-100" />
                 <!-- Delete -->
@@ -123,3 +131,38 @@
         </div>
     </div>
 </div>
+
+{#if isExpanded}
+    <!-- Large Palette -->
+    <div in:fade={{ duration: 200 }} out:fade={{ delay: 200 }} class="absolute inset-0 z-10 bg-white/70 backdrop-blur-md">
+        <div in:scale={{ delay: 250 }} out:scale class="absolute inset-4 md:inset-24 flex flex-col rounded-[13px] shadow-md overflow-clip">
+            <!-- Colors -->
+            <div class="flex flex-1">
+                {#each palette.colors as color}
+                    <button
+                        class="h-full w-full flex justify-center items-center relative group transition-all hover:shadow-[var(--shadow-color)] hover:shadow-xl hover:z-10 hover:scale-105 active:scale-100 group"
+                        style="background-color: {color.hex}; --shadow-color: {color.hex}"
+                        on:click={() => copyColor(color)}
+                    >
+                        <span class="flex justify-center items-center text-xl bg-white rounded-full w-10 h-10 transition-all opacity-0 group-hover:opacity-100"><i class="fa-regular fa-copy" /></span>
+                        <div class="flex flex-col absolute bottom-6 opacity-50 transition-all group-hover:bottom-12" style={`color: ${getContrastColorFromHex(color.hex)}`}>
+                            <span class="font-bold">{color.hex}</span>
+                            <span>{color.name}</span>
+                        </div>
+                    </button>
+                {/each}
+            </div>
+            <!-- Footer -->
+            <footer class="flex bg-white px-4 h-[80px] z-20 justify-between items-center">
+                <p class="font-medium text-lg leading-tight text-zinc-500">{palette.name}</p>
+                <!-- Actions -->
+                <div class="flex gap-4">
+                    {#if !isFavorite}
+                        <Button text="Favorite" icon="fa-regular fa-heart" on:click={() => (isExpanded = false)} />
+                    {/if}
+                    <Button text="Close" on:click={() => (isExpanded = false)} />
+                </div>
+            </footer>
+        </div>
+    </div>
+{/if}
