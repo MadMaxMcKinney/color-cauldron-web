@@ -35,10 +35,23 @@ export const GET: RequestHandler = async (event) => {
     let newPalette: Palette;
 
     try {
-        // Parse the data following the OpenAI schema https://platform.openai.com/docs/api-reference/chat/object
+        // Parse the data for colors following the OpenAI schema https://platform.openai.com/docs/api-reference/chat/object
+        let paletteColors = JSON.parse(completion.choices[0].message.content!) as PaletteColor[];
+        if (paletteColors.length !== 5) {
+            console.error('Expected 5 colors, but received ' + paletteColors.length + '. Falling back to default colors.');
+            paletteColors = [
+                { hex: '#FF0000', name: 'Red' },
+                { hex: '#00FF00', name: 'Green' },
+                { hex: '#0000FF', name: 'Blue' },
+                { hex: '#FFFF00', name: 'Yellow' },
+                { hex: '#FF00FF', name: 'Magenta' }
+            ];
+        }
         newPalette = {
             name: prompt!,
-            colors: JSON.parse(completion.choices[0].message.content!) as PaletteColor[]
+            colors: paletteColors,
+            id: Math.random().toString(36).substring(2),
+            createdAt: new Date()
         };
     } catch (e) {
         return Response.json({ error: e }, { status: 400 });

@@ -34,6 +34,7 @@
 		"motion": "^10.16.4",
 		"openai": "^4.0.0",
 		"svelte-french-toast": "^1.2.0",
+		"svelte-persisted-store": "^0.11.0",
 		"svelte-typewriter": "^3.1.6",
 		"tippy.js": "^6.3.7"
 	}

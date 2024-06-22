@@ -1,12 +1,13 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
     import { flip } from 'svelte/animate';
-    import Palette from '$lib/components/Palette.svelte';
+    import PaletteCard from '$lib/components/PaletteCard.svelte';
     import BrewInput from '$lib/components/BrewInput.svelte';
+    import { persisted } from 'svelte-persisted-store';
 
     let isFetchingPalette: boolean = false;
-    let palettes: any[] = [];
     let brewInput: string = '';
+    let palettes = [] as Palette[];
 
     async function brew() {
         if (brewInput.length === 0) return;
@@ -50,9 +51,9 @@
         <section class="mt-16" in:fade={{ duration: 1000, delay: 700 }}>
             <p class="font-bold text-lg font-serif mb-6">Recent creations</p>
             <div class="flex flex-col gap-8">
-                {#each palettes as palette (palette)}
+                {#each palettes as palette (palette.id)}
                     <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
-                        <Palette {palette} />
+                        <PaletteCard {palette} />
                     </div>
                 {/each}
             </div>
