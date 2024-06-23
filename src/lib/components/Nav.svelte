@@ -20,6 +20,7 @@
 </nav>
 
 <!-- Mobile nav bar -->
+<!-- TODO: Make this it's own component -->
 <div class="pointer-events-none fixed bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-white to-white/0 md:hidden">
     <div class="flex w-full justify-end gap-4 px-6 py-4">
         <Button icon="fa-regular fa-cauldron" type="icon" href="/brew" class="pointer-events-auto" />
