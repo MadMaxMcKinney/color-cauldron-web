@@ -81,50 +81,61 @@
         $favoritePalettes.palettes = $favoritePalettes.palettes.filter((p) => p.id !== palette.id);
     }
 
+    function closeLargePalette(e?: Event) {
+        if (isExpanded) isExpanded = false;
+    }
+
     onMount(() => {
         setDownloadForPalette(palette);
     });
 </script>
 
-<div class="flex flex-col rounded-[13px] border border-zinc-200 overflow-hidden h-[160px]">
-    <div class="flex flex-row overflow-hidden w-full h-full">
+<svelte:window
+    on:keydown={(e) => {
+        console.log(e);
+        if (e.key == 'Escape') closeLargePalette();
+    }}
+/>
+
+<div class="flex h-[160px] flex-col overflow-hidden rounded-[13px] border border-zinc-200">
+    <div class="flex h-full w-full flex-row overflow-hidden">
         {#each palette.colors as color}
             <button
-                class="h-full w-full flex justify-center items-center group transition-all hover:shadow-[var(--shadow-color)] hover:shadow-xl hover:z-10 hover:scale-110 active:scale-100"
+                class="group flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-110 hover:shadow-xl hover:shadow-[var(--shadow-color)] active:scale-100"
                 style="background-color: {color.hex}; --shadow-color: {color.hex}"
                 on:click={() => copyColor(color)}
                 use:tooltip={{ text: `${color.name} ${color.hex}` }}
             >
-                <span class="flex justify-center items-center text-xl bg-white rounded-full w-10 h-10 transition-all opacity-0 group-hover:opacity-100"><i class="fa-regular fa-copy" /></span>
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl opacity-0 transition-all group-hover:opacity-100"><i class="fa-regular fa-copy" /></span>
             </button>
         {/each}
     </div>
     <div class="flex justify-between bg-white">
         <!-- Palette name -->
         <div class="px-4 py-3">
-            <p class="font-medium text-lg leading-tight text-zinc-500">{palette.name}</p>
+            <p class="text-lg font-medium leading-tight text-zinc-500">{palette.name}</p>
         </div>
         <!-- Actions -->
         <!-- Todo: Make these action icons a component -->
         <div class="flex">
             {#if !isFavorite}
                 <!-- Favorite -->
-                <button class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-10 h-full text-base" use:tooltip={{ text: 'Favorite' }} on:click={savePaletteAsFavorite}>
+                <button class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" use:tooltip={{ text: `${isSettingAsFavorite ? 'Saved' : 'Favorite'}` }} on:click={savePaletteAsFavorite}>
                     <i class={`${isSettingAsFavorite ? 'fa-solid' : 'fa-regular'} fa-heart text-lg`} />
                 </button>
             {/if}
             <!-- Download -->
-            <a class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-10 h-full text-base" href={paletteDataURI} download="{palette.name} palette" bind:this={elemPaletteDownload} use:tooltip={{ text: 'Download' }}>
+            <a class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" href={paletteDataURI} download="{palette.name} palette" bind:this={elemPaletteDownload} use:tooltip={{ text: 'Download' }}>
                 <i class="fa-regular fa-download text-lg" />
             </a>
             <!-- Expand -->
-            <button class="text-brand-green hover:text-green-200 flex justify-center items-center transition-colors w-10 h-full text-base" use:tooltip={{ text: 'Expand' }} on:click={() => (isExpanded = true)}>
+            <button class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" use:tooltip={{ text: 'Expand' }} on:click={() => (isExpanded = true)}>
                 <i class={`fa-regular fa-up-right-and-down-left-from-center text-lg`} />
             </button>
             {#if isFavorite}
                 <span class="h-full w-[1px] bg-zinc-100" />
                 <!-- Delete -->
-                <button class="text-zinc-500 hover:text-zinc-200 flex justify-center items-center transition-colors w-10 h-full text-base" use:tooltip={{ text: 'Remove favorite' }} on:click={removeFavorite}>
+                <button class="flex h-full w-10 items-center justify-center text-base text-zinc-500 transition-colors hover:text-zinc-200" use:tooltip={{ text: 'Remove favorite' }} on:click={removeFavorite}>
                     <i class="fa-regular fa-xmark text-lg" />
                 </button>
             {/if}
@@ -134,18 +145,18 @@
 
 {#if isExpanded}
     <!-- Large Palette -->
-    <div in:fade={{ duration: 200 }} out:fade={{ delay: 200 }} class="absolute inset-0 z-10 bg-white/70 backdrop-blur-md">
-        <div in:scale={{ delay: 250 }} out:scale class="absolute inset-4 md:inset-24 flex flex-col rounded-[13px] shadow-md overflow-clip">
+    <div in:fade={{ duration: 200 }} out:fade={{ delay: 200 }} class="fixed inset-0 z-10 bg-white/70 backdrop-blur-md">
+        <div in:scale={{ delay: 250 }} out:scale class="absolute inset-4 flex flex-col overflow-clip rounded-[13px] shadow-md md:inset-24">
             <!-- Colors -->
-            <div class="flex flex-1">
+            <div class="flex flex-1 flex-col md:flex-row">
                 {#each palette.colors as color}
                     <button
-                        class="h-full w-full flex justify-center items-center relative group transition-all hover:shadow-[var(--shadow-color)] hover:shadow-xl hover:z-10 hover:scale-105 active:scale-100 group"
+                        class="group group relative flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-105 active:scale-100 md:hover:shadow-xl md:hover:shadow-[var(--shadow-color)]"
                         style="background-color: {color.hex}; --shadow-color: {color.hex}"
                         on:click={() => copyColor(color)}
                     >
-                        <span class="flex justify-center items-center text-xl bg-white rounded-full w-10 h-10 transition-all opacity-0 group-hover:opacity-100"><i class="fa-regular fa-copy" /></span>
-                        <div class="flex flex-col absolute bottom-6 opacity-50 transition-all group-hover:bottom-12" style={`color: ${getContrastColorFromHex(color.hex)}`}>
+                        <span class="z-30 flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl opacity-0 transition-all group-hover:opacity-100"><i class="fa-regular fa-copy" /></span>
+                        <div class="absolute bottom-6 flex flex-col opacity-50 transition-all md:group-hover:bottom-12" style={`color: ${getContrastColorFromHex(color.hex)}`}>
                             <span class="font-bold">{color.hex}</span>
                             <span>{color.name}</span>
                         </div>
@@ -153,14 +164,14 @@
                 {/each}
             </div>
             <!-- Footer -->
-            <footer class="flex bg-white px-4 h-[80px] z-20 justify-between items-center">
-                <p class="font-medium text-lg leading-tight text-zinc-500">{palette.name}</p>
+            <footer class="z-20 flex h-[80px] items-center justify-between bg-white px-4">
+                <p class="text-base font-medium leading-tight text-zinc-500 md:text-lg">{palette.name}</p>
                 <!-- Actions -->
                 <div class="flex gap-4">
                     {#if !isFavorite}
-                        <Button text="Favorite" icon="fa-regular fa-heart" on:click={() => (isExpanded = false)} />
+                        <Button text={isSettingAsFavorite ? 'Saved' : 'Favorite'} icon="fa-heart {isSettingAsFavorite ? 'fa-solid' : 'fa-regular'}" on:click={savePaletteAsFavorite} />
                     {/if}
-                    <Button text="Close" on:click={() => (isExpanded = false)} />
+                    <Button text="Close" on:click={closeLargePalette} />
                 </div>
             </footer>
         </div>

@@ -6,17 +6,17 @@
 
 <div class="animate-fade-in">
     <Container>
-        <section class="pt-10 sm:pt-20 relative">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl leading-snug font-bold font-serif">AI powered,<br /> imagination driven.</h1>
-            <p class="mt-10 text-xl font-medium max-w-lg">Easily create mystical color palettes by describing how the colors will be used, then sit back and let the magic happen.</p>
-            <div class="flex flex-col gap-4 items-start mt-16 md:items-center md:flex-row">
+        <section class="relative pt-10 sm:pt-20">
+            <h1 class="font-serif text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">AI powered,<br /> imagination driven.</h1>
+            <p class="mt-6 max-w-lg text-xl font-medium md:mt-10">Easily create mystical color palettes by describing how the colors will be used, then sit back and let the magic happen.</p>
+            <div class="mt-16 flex flex-col items-start gap-4 md:flex-row md:items-center">
                 <HeroButton text="Start brewing" icon="fa-regular fa-cauldron" href="/brew" />
-                <a class="bg-white border border-zinc-400 rounded-[13px] h-14 px-6 inline-flex justify-center items-center gap-3 font-medium text-xl leading-none cursor-default transition-all focus-visible:outline-offset-4" href="#">App Store - coming soon</a>
+                <a class="inline-flex h-14 cursor-default items-center justify-center gap-3 rounded-[13px] border border-zinc-400 bg-white px-6 text-xl font-medium leading-none transition-all focus-visible:outline-offset-4" href="#">App Store - coming soon</a>
             </div>
-            <video autoplay loop muted playsinline class="absolute -left-[70px] mt-6 sm:left-auto sm:-right-[150px] sm:top-[300px] md:top-[250px] lg:top-[200px] w-[780px] -z-10">
+            <video autoplay loop muted playsinline class="absolute -left-[70px] -z-10 mt-6 w-[780px] sm:-right-[150px] sm:left-auto sm:top-[300px] md:top-[250px] lg:top-[200px]">
                 <source src="https://yhdbff7qdnrdylls.public.blob.vercel-storage.com/cauldron-hero-v3-2JZx5SmfomoctzHXijfBtpsxAljBzC.mp4" type="video/mp4" />
             </video>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-[160px] sm:mt-[100px]">
+            <div class="mt-[160px] grid grid-cols-1 gap-6 sm:mt-[100px] md:grid-cols-2">
                 <OverviewCard title="The only limit is your imagination" description="Powered by GPT-3.5 ML model trained with additional context, brewing a color palette has never been easier." type="imagination" />
                 <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." type="quickly-save" />
                 <OverviewCard title="Accessible API" description="Want to brew some palettes in your own projects? We have an easy to use endpoint that will get you started!" size="double" type="api" />

@@ -10,7 +10,7 @@
             <a class="flex justify-between transition-all hover:opacity-70" href="/">
                 <span class="flex items-center gap-2 font-serif text-xl font-bold"><img src={logo} alt="Black cauldron logo" class="w-[19px] h-auto" /> Color Cauldron</span>
             </a>
-            <div class="flex gap-4">
+            <div class="flex items-center gap-4">
                 <Button icon="fa-regular fa-cauldron" type="icon" href="/brew" />
                 <Button text="Favorites" icon="fa-regular fa-heart" href="/favorites" />
             </div>
