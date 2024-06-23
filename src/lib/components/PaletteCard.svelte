@@ -97,8 +97,8 @@
     }}
 />
 
-<div class="flex h-[160px] flex-col overflow-hidden rounded-[13px] border border-zinc-200">
-    <div class="flex h-full w-full flex-row overflow-hidden">
+<div class="flex flex-col overflow-hidden rounded-[13px] border border-zinc-200">
+    <div class="flex h-[120px] w-full flex-row overflow-hidden">
         {#each palette.colors as color}
             <button
                 class="group flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-110 hover:shadow-xl hover:shadow-[var(--shadow-color)] active:scale-100"
@@ -164,14 +164,14 @@
                 {/each}
             </div>
             <!-- Footer -->
-            <footer class="z-20 flex h-[80px] items-center justify-between bg-white px-4">
+            <footer class="z-20 flex flex-col justify-between gap-4 bg-white px-4 py-3 md:h-[80px] md:flex-row md:items-center">
                 <p class="text-base font-medium leading-tight text-zinc-500 md:text-lg">{palette.name}</p>
                 <!-- Actions -->
                 <div class="flex gap-4">
                     {#if !isFavorite}
-                        <Button text={isSettingAsFavorite ? 'Saved' : 'Favorite'} icon="fa-heart {isSettingAsFavorite ? 'fa-solid' : 'fa-regular'}" on:click={savePaletteAsFavorite} />
+                        <Button text={isSettingAsFavorite ? 'Saved' : 'Favorite'} icon="fa-heart {isSettingAsFavorite ? 'fa-solid' : 'fa-regular'}" on:click={savePaletteAsFavorite} class="w-full flex-1 md:w-auto" />
                     {/if}
-                    <Button text="Close" on:click={closeLargePalette} />
+                    <Button text="Close" on:click={closeLargePalette} class="w-full flex-1 md:w-auto" />
                 </div>
             </footer>
         </div>

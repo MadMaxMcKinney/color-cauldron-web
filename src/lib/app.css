@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     scroll-behavior: smooth;
+    @apply mb-16 md:mb-0;
 }
 
 html,

@@ -14,7 +14,7 @@
 </script>
 
 {#if href}
-    <a class="{typeClasses[type]} bg-white text-black border border-zinc-300 rounded-[13px] inline-flex justify-center items-center gap-2 font-medium leading-none transition-all hover:bg-zinc-200 focus-visible:outline-offset-4 active:bg-zinc-300 {$$restProps.class}" {href}>
+    <a class="{typeClasses[type]} inline-flex items-center justify-center gap-2 rounded-[13px] border border-zinc-300 bg-white font-medium leading-none text-black transition-all hover:bg-zinc-200 focus-visible:outline-offset-4 active:bg-zinc-300 {$$restProps.class}" {href}>
         {#if icon}
             <i class={icon} />
         {/if}
@@ -24,7 +24,7 @@
     </a>
 {:else}
     <button
-        class="{typeClasses[type]} bg-white text-black border border-zinc-300 rounded-[13px] inline-flex justify-center items-center gap-2 font-medium leading-none transition-all hover:bg-zinc-200 focus-visible:outline-offset-4 active:bg-zinc-300 {$$restProps.class}"
+        class="{typeClasses[type]} inline-flex items-center justify-center gap-2 rounded-[13px] border border-zinc-300 bg-white font-medium leading-none text-black transition-all hover:bg-zinc-200 focus-visible:outline-offset-4 active:bg-zinc-300 {$$restProps.class}"
         on:click={() => dispatch('click')}
     >
         {#if icon}

@@ -1,7 +1,7 @@
 <script lang="ts">
     import '$lib/app.css';
     import Footer from '$lib/components/Footer.svelte';
-    import TopNav from '$lib/components/TopNav.svelte';
+    import Nav from '$lib/components/Nav.svelte';
     import { Toaster } from 'svelte-french-toast';
     import 'tippy.js/dist/tippy.css';
 </script>
@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
-<TopNav />
+<Nav />
 
 <div class="flex-1">
     <slot />
