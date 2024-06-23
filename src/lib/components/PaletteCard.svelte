@@ -1,12 +1,12 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import toast from 'svelte-french-toast';
-    import { tooltip } from '$lib/actions';
+    import { dialog, tooltip } from '$lib/actions';
     import { getContrastColorFromHex } from '$lib/utils';
     import { favoritePalettes } from '$lib/stores';
-    import { fade, scale } from 'svelte/transition';
+    import { scale } from 'svelte/transition';
     import Button from './Button.svelte';
-    import { text } from '@sveltejs/kit';
+    import Overlay from '$lib/components/utility/Overlay.svelte';
 
     // PROPS
     export let palette: Palette;
@@ -81,6 +81,10 @@
         $favoritePalettes.palettes = $favoritePalettes.palettes.filter((p) => p.id !== palette.id);
     }
 
+    function onDialogAnswer(e: CustomEvent) {
+        if (e.detail.answer === 'confirm') removeFavorite();
+    }
+
     function closeLargePalette(e?: Event) {
         if (isExpanded) isExpanded = false;
     }
@@ -135,7 +139,7 @@
             {#if isFavorite}
                 <span class="h-full w-[1px] bg-zinc-100" />
                 <!-- Delete -->
-                <button class="flex h-full w-10 items-center justify-center text-base text-zinc-500 transition-colors hover:text-zinc-200" use:tooltip={{ text: 'Remove favorite' }} on:click={removeFavorite}>
+                <button class="flex h-full w-10 items-center justify-center text-base text-zinc-500 transition-colors hover:text-zinc-200" use:tooltip={{ text: 'Remove favorite' }} use:dialog={{ title: `Remove: ${palette.name}?`, confirmPrompt: 'Remove' }} on:dialoganswer={onDialogAnswer}>
                     <i class="fa-regular fa-xmark text-lg" />
                 </button>
             {/if}
@@ -145,8 +149,8 @@
 
 {#if isExpanded}
     <!-- Large Palette -->
-    <div in:fade={{ duration: 200 }} out:fade={{ delay: 200 }} class="fixed inset-0 z-10 bg-white/70 backdrop-blur-md">
-        <div in:scale={{ delay: 250 }} out:scale class="absolute inset-4 flex flex-col overflow-clip rounded-[13px] shadow-md md:inset-24">
+    <Overlay>
+        <div in:scale={{ delay: 200 }} out:scale class="absolute inset-4 flex flex-col overflow-clip rounded-[13px] shadow-md md:inset-24">
             <!-- Colors -->
             <div class="flex flex-1 flex-col md:flex-row">
                 {#each palette.colors as color}
@@ -175,5 +179,5 @@
                 </div>
             </footer>
         </div>
-    </div>
+    </Overlay>
 {/if}
