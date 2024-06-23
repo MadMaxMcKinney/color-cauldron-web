@@ -9,9 +9,9 @@
         <section class="relative pt-10 sm:pt-20">
             <h1 class="font-serif text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">AI powered,<br /> imagination driven.</h1>
             <p class="mt-6 max-w-lg text-xl font-medium md:mt-10">Easily create mystical color palettes by describing how the colors will be used, then sit back and let the magic happen.</p>
-            <div class="mt-16 flex flex-col items-start gap-4 md:flex-row md:items-center">
+            <div class="mt-10 flex flex-col items-start gap-4 md:mt-16 md:flex-row md:items-center">
                 <HeroButton text="Start brewing" icon="fa-regular fa-cauldron" href="/brew" />
-                <a class="inline-flex h-14 cursor-default items-center justify-center gap-3 rounded-[13px] border border-zinc-400 bg-white px-6 text-xl font-medium leading-none transition-all focus-visible:outline-offset-4" href="#">App Store - coming soon</a>
+                <!-- <a class="inline-flex h-14 cursor-default items-center justify-center gap-3 rounded-[13px] border border-zinc-400 bg-white px-6 text-xl font-medium leading-none transition-all focus-visible:outline-offset-4" href="#">App Store - coming soon</a> -->
             </div>
             <video autoplay loop muted playsinline class="absolute -left-[70px] -z-10 mt-6 w-[780px] sm:-right-[150px] sm:left-auto sm:top-[300px] md:top-[250px] lg:top-[200px]">
                 <source src="https://yhdbff7qdnrdylls.public.blob.vercel-storage.com/cauldron-hero-v3-2JZx5SmfomoctzHXijfBtpsxAljBzC.mp4" type="video/mp4" />
