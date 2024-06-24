@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { SvelteComponent, onMount } from 'svelte';
     import toast from 'svelte-french-toast';
     import { dialog, tooltip } from '$lib/actions';
     import { getContrastColorFromHex } from '$lib/utils';
@@ -11,11 +11,9 @@
     // PROPS
     export let palette: Palette;
     // Whether the palette is a favorite
-    export let isFavorite: boolean = false;
+    export let favoriteControlsVisible: boolean = false;
     /////
 
-    let paletteDataURI: string;
-    let elemPaletteDownload: HTMLAnchorElement;
     // Whether the palette is being set as a favorite, but not yet saved so we don't want to show the additional saved palette controls
     let isSettingAsFavorite: boolean = false;
     let isExpanded: boolean = false;
@@ -30,50 +28,41 @@
         });
     }
 
-    function setDownloadForPalette(palette: Palette) {
-        // Create a canvas to draw the palette on so that we can later download it
-        let c: HTMLCanvasElement = document.createElement('canvas');
-        const canvasWidth = 300;
-        const canvasHeight = 256;
-        const paletteColorHeight = 210;
-
-        c.width = canvasWidth;
-        c.height = canvasHeight;
-
-        let ctx = c.getContext('2d');
-        if (ctx) {
-            // Add BG color to the canvas based on the first color the palette
-            ctx.fillStyle = palette.colors[0].hex;
-            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-            // Add each color
-            palette.colors.forEach((color, i) => {
-                ctx!.fillStyle = color.hex;
-                ctx!.fillRect((i * canvasWidth) / 5, 0, canvasWidth / 5, paletteColorHeight);
-            });
-            // Get a legible text and border color to be used based on the first color in the palette
-            const legibleColor = getContrastColorFromHex(palette.colors[0].hex);
-            // Add border
-            ctx.fillStyle = legibleColor;
-            ctx.fillRect(0, paletteColorHeight, canvasWidth, 1);
-            // Add info text
-            ctx!.fillStyle = legibleColor;
-            ctx!.font = '14px sans-serif';
-            ctx!.fillText('colorcauldron.app', 4, paletteColorHeight + 17);
+    async function downloadPalette() {
+        let paletteData = await fetch(`/api/palette/`, {
+            method: 'POST',
+            body: JSON.stringify(palette)
+        });
+        const paletteDataURI = await paletteData.blob();
+        const paletteFile = new File([paletteDataURI], `${palette.name}.png`, { type: 'image/png' });
+        if (navigator.share) {
+            navigator.share({ files: [paletteFile] });
+        } else {
+            const url = URL.createObjectURL(paletteFile);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = paletteFile.name;
+            a.click();
+            URL.revokeObjectURL(url);
         }
-
-        elemPaletteDownload.href = c.toDataURL();
     }
 
-    function savePaletteAsFavorite() {
-        if (isSettingAsFavorite) return;
-        // Save the palette as a favorite
-        isSettingAsFavorite = true;
-        try {
-            $favoritePalettes.palettes = [...$favoritePalettes.palettes, palette];
-            toast.success('Saved as favorite');
-        } catch {
-            toast.error('Failed to save, please try again');
+    function togglePaletteSavingAsFavorite() {
+        if (isSettingAsFavorite) {
             isSettingAsFavorite = false;
+            removeFavorite();
+        } else {
+            isSettingAsFavorite = true;
+            setFavorite();
+        }
+    }
+
+    function setFavorite() {
+        // Make sure there isn't already a palette with the same id. Mostly a safety check that comes up during testing but let's be safe!
+        if (!$favoritePalettes.palettes.find((p) => p.id === palette.id)) {
+            $favoritePalettes.palettes = [...$favoritePalettes.palettes, palette];
+        } else {
+            toast.error('Palette already saved as favorite');
         }
     }
 
@@ -81,17 +70,13 @@
         $favoritePalettes.palettes = $favoritePalettes.palettes.filter((p) => p.id !== palette.id);
     }
 
-    function onDialogAnswer(e: CustomEvent) {
+    function removeFavoriteHandler(e: CustomEvent) {
         if (e.detail.answer === 'confirm') removeFavorite();
     }
 
     function closeLargePalette(e?: Event) {
         if (isExpanded) isExpanded = false;
     }
-
-    onMount(() => {
-        setDownloadForPalette(palette);
-    });
 </script>
 
 <svelte:window
@@ -122,24 +107,32 @@
         <!-- Actions -->
         <!-- Todo: Make these action icons a component -->
         <div class="flex">
-            {#if !isFavorite}
+            {#if !favoriteControlsVisible}
                 <!-- Favorite -->
-                <button class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" use:tooltip={{ text: `${isSettingAsFavorite ? 'Saved' : 'Favorite'}` }} on:click={savePaletteAsFavorite}>
-                    <i class={`${isSettingAsFavorite ? 'fa-solid' : 'fa-regular'} fa-heart text-lg`} />
-                </button>
+                <span>
+                    {#if isSettingAsFavorite}
+                        <button class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" use:tooltip={{ text: 'Unfavorite' }} on:click={togglePaletteSavingAsFavorite}>
+                            <i class={`fa-solid fa-heart text-lg`} />
+                        </button>
+                    {:else}
+                        <button class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" use:tooltip={{ text: 'Favorite' }} on:click={togglePaletteSavingAsFavorite}>
+                            <i class={`fa-regular fa-heart text-lg`} />
+                        </button>
+                    {/if}
+                </span>
             {/if}
             <!-- Download -->
-            <a class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" href={paletteDataURI} download="{palette.name} palette" bind:this={elemPaletteDownload} use:tooltip={{ text: 'Download' }}>
+            <button class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" on:click={downloadPalette} use:tooltip={{ text: 'Download' }}>
                 <i class="fa-regular fa-download text-lg" />
-            </a>
+            </button>
             <!-- Expand -->
             <button class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" use:tooltip={{ text: 'Expand' }} on:click={() => (isExpanded = true)}>
                 <i class={`fa-regular fa-up-right-and-down-left-from-center text-lg`} />
             </button>
-            {#if isFavorite}
+            {#if favoriteControlsVisible}
                 <span class="h-full w-[1px] bg-zinc-100" />
                 <!-- Delete -->
-                <button class="flex h-full w-10 items-center justify-center text-base text-zinc-500 transition-colors hover:text-zinc-200" use:tooltip={{ text: 'Remove favorite' }} use:dialog={{ title: `Remove: ${palette.name}?`, confirmPrompt: 'Remove' }} on:dialoganswer={onDialogAnswer}>
+                <button class="flex h-full w-10 items-center justify-center text-base text-zinc-500 transition-colors hover:text-zinc-200" use:tooltip={{ text: 'Remove favorite' }} use:dialog={{ title: `Remove: ${palette.name}?`, confirmPrompt: 'Remove' }} on:dialoganswer={removeFavoriteHandler}>
                     <i class="fa-regular fa-xmark text-lg" />
                 </button>
             {/if}
@@ -150,7 +143,7 @@
 {#if isExpanded}
     <!-- Large Palette -->
     <Overlay>
-        <div in:scale={{ delay: 200 }} out:scale class="absolute inset-4 flex flex-col overflow-clip rounded-[13px] shadow-md md:inset-24">
+        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="absolute inset-4 flex flex-col overflow-clip rounded-[13px] shadow-md md:inset-24">
             <!-- Colors -->
             <div class="flex flex-1 flex-col md:flex-row">
                 {#each palette.colors as color}
@@ -172,8 +165,8 @@
                 <p class="text-base font-medium leading-tight text-zinc-500 md:text-lg">{palette.name}</p>
                 <!-- Actions -->
                 <div class="flex gap-4">
-                    {#if !isFavorite}
-                        <Button text={isSettingAsFavorite ? 'Saved' : 'Favorite'} icon="fa-heart {isSettingAsFavorite ? 'fa-solid' : 'fa-regular'}" on:click={savePaletteAsFavorite} class="w-full flex-1 md:w-auto" />
+                    {#if !favoriteControlsVisible}
+                        <Button text={isSettingAsFavorite ? 'Unfavorite' : 'Favorite'} icon="fa-heart {isSettingAsFavorite ? 'fa-solid' : 'fa-regular'}" on:click={togglePaletteSavingAsFavorite} class="w-full flex-1 md:w-auto" />
                     {/if}
                     <Button text="Close" on:click={closeLargePalette} class="w-full flex-1 md:w-auto" />
                 </div>
