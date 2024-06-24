@@ -7,6 +7,7 @@
     import { scale } from 'svelte/transition';
     import Button from './Button.svelte';
     import Overlay from '$lib/components/utility/Overlay.svelte';
+    import PaletteAction from '$lib/components/palette/PaletteAction.svelte';
 
     // PROPS
     export let palette: Palette;
@@ -109,32 +110,20 @@
         <div class="flex">
             {#if !favoriteControlsVisible}
                 <!-- Favorite -->
-                <span>
-                    {#if isSettingAsFavorite}
-                        <button class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" use:tooltip={{ text: 'Unfavorite' }} on:click={togglePaletteSavingAsFavorite}>
-                            <i class={`fa-solid fa-heart text-lg`} />
-                        </button>
-                    {:else}
-                        <button class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" use:tooltip={{ text: 'Favorite' }} on:click={togglePaletteSavingAsFavorite}>
-                            <i class={`fa-regular fa-heart text-lg`} />
-                        </button>
-                    {/if}
-                </span>
+                {#if isSettingAsFavorite}
+                    <PaletteAction icon="fa-solid fa-heart text-lg" on:click={togglePaletteSavingAsFavorite} tooltipParams={{ text: 'Unfavorite' }}></PaletteAction>
+                {:else}
+                    <PaletteAction icon="fa-regular fa-heart text-lg" tooltipParams={{ text: 'Favorite' }} on:click={togglePaletteSavingAsFavorite}></PaletteAction>
+                {/if}
             {/if}
             <!-- Download -->
-            <button class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" on:click={downloadPalette} use:tooltip={{ text: 'Download' }}>
-                <i class="fa-regular fa-download text-lg" />
-            </button>
+            <PaletteAction icon="fa-regular fa-download text-lg" on:click={downloadPalette} tooltipParams={{ text: 'Download' }}></PaletteAction>
             <!-- Expand -->
-            <button class="flex h-full w-10 items-center justify-center text-base text-brand-green transition-colors hover:text-green-200" use:tooltip={{ text: 'Expand' }} on:click={() => (isExpanded = true)}>
-                <i class={`fa-regular fa-up-right-and-down-left-from-center text-lg`} />
-            </button>
+            <PaletteAction icon="fa-regular fa-up-right-and-down-left-from-center text-lg" tooltipParams={{ text: 'Expand' }} on:click={() => (isExpanded = true)}></PaletteAction>
             {#if favoriteControlsVisible}
                 <span class="h-full w-[1px] bg-zinc-100" />
                 <!-- Delete -->
-                <button class="flex h-full w-10 items-center justify-center text-base text-zinc-500 transition-colors hover:text-zinc-200" use:tooltip={{ text: 'Remove favorite' }} use:dialog={{ title: `Remove: ${palette.name}?`, confirmPrompt: 'Remove' }} on:dialoganswer={removeFavoriteHandler}>
-                    <i class="fa-regular fa-xmark text-lg" />
-                </button>
+                <PaletteAction icon="fa-regular fa-xmark text-lg" tooltipParams={{ text: 'Remove favorite' }} dialogParams={{ title: `Remove: ${palette.name}?`, confirmPrompt: 'Remove' }} on:dialoganswer={removeFavoriteHandler}></PaletteAction>
             {/if}
         </div>
     </div>
