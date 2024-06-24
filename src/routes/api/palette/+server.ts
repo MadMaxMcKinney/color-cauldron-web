@@ -5,7 +5,7 @@ import type { RequestHandler } from './$types';
 import { image_from_component, type RenderOptions } from 'svelte-component-to-image';
 
 // Normal .svelte component
-import HelloWorld from '$lib/components/gen/SharePalette.svelte';
+import SharePalette from '$lib/components/generated/SharePalette.svelte';
 
 export const POST: RequestHandler = (async ({ url, request }: { url: URL; request: Request }) => {
     try {
@@ -33,7 +33,7 @@ export const POST: RequestHandler = (async ({ url, request }: { url: URL; reques
         };
 
         // pass the component and options to the package
-        const image = await image_from_component(HelloWorld, options);
+        const image = await image_from_component(SharePalette, options);
         const response = new Response(image);
         response.headers.append('Content-Type', 'image/png');
         response.headers.append('Cache-Control', 's-maxage=604800, stale-while-revalidate=604800');

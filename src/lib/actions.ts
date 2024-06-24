@@ -14,7 +14,8 @@ export function tooltip(elem: HTMLElement, { text, offset }: TooltipOptions) {
         arrow: false,
         theme: 'cauldron',
         hideOnClick: true,
-        offset: offset ? offset : [0, -10]
+        offset: offset ? offset : [0, -10],
+        touch: false
     });
 
     return {

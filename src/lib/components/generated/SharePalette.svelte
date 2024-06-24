@@ -1,11 +1,15 @@
 <script lang="ts">
     export let palette: Palette;
+    import { getContrastColorFromHex } from '$lib/utils';
 </script>
 
 <div class="container">
     <div class="colors">
         {#each palette.colors as color}
-            <span style="background-color: {color.hex}"></span>
+            <span style="background-color: {color.hex}">
+                <p style={`color: ${getContrastColorFromHex(color.hex)}`}>{color.hex}</p>
+                <p style={`color: ${getContrastColorFromHex(color.hex)}`}>{color.name}</p>
+            </span>
         {/each}
     </div>
     <div class="footer">
@@ -34,9 +38,21 @@
     }
     .colors span {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
         height: 100px;
         width: 100%;
         height: 100%;
+        padding: 8px;
+        padding-bottom: 16px;
+    }
+    .colors span p {
+        font-size: 22px;
+        font-weight: 700;
+        opacity: 0.75;
+        line-height: 1;
     }
     .footer {
         display: flex;

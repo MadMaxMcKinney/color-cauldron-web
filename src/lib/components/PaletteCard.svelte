@@ -30,21 +30,28 @@
     }
 
     async function downloadPalette() {
-        let paletteData = await fetch(`/api/palette/`, {
-            method: 'POST',
-            body: JSON.stringify(palette)
+        toast.promise(savePalette(), {
+            loading: 'Saving palette...',
+            success: 'Palette saved!',
+            error: 'Failed to save palette'
         });
-        const paletteDataURI = await paletteData.blob();
-        const paletteFile = new File([paletteDataURI], `${palette.name}.png`, { type: 'image/png' });
-        if (navigator.share) {
-            navigator.share({ files: [paletteFile] });
-        } else {
-            const url = URL.createObjectURL(paletteFile);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = paletteFile.name;
-            a.click();
-            URL.revokeObjectURL(url);
+        async function savePalette() {
+            let paletteData = await fetch(`/api/palette/`, {
+                method: 'POST',
+                body: JSON.stringify(palette)
+            });
+            const paletteDataURI = await paletteData.blob();
+            const paletteFile = new File([paletteDataURI], `${palette.name}.png`, { type: 'image/png' });
+            if (navigator.share) {
+                navigator.share({ files: [paletteFile] });
+            } else {
+                const url = URL.createObjectURL(paletteFile);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = paletteFile.name;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
         }
     }
 
