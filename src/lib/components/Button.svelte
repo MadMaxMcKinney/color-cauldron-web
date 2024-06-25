@@ -22,6 +22,10 @@
         danger: 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700'
     };
 
+    /**
+     * Pulse the button to signify something happened
+     * @example favButton.notify()
+     */
     export function notify() {
         // Get the starting color of the button so that we can animate back to it
         const startingColor = getComputedStyle(selfRef).backgroundColor;
