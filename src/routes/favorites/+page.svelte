@@ -12,7 +12,7 @@
     <div class="mx-auto flex animate-fade-in flex-col">
         <section class="mt-14 flex items-center gap-3">
             <p class="font-serif text-3xl font-bold">Favorites</p>
-            <i class="fa-regular fa-circle-info text-[20p] text-zinc-400 transition-colors hover:text-zinc-500" use:tooltip={{ text: 'Palettes are saved locally in your browser', offset: [0, 8] }} />
+            <i class="fa-regular fa-circle-info text-[20p] text-zinc-400 transition-colors hover:text-zinc-500" use:tooltip={{ text: 'Palettes are saved locally in your browser', offset: [0, 8], touch: true }} />
         </section>
 
         <div class="mt-16">

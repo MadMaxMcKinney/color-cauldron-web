@@ -78,7 +78,7 @@
         $favoritePalettes.palettes = $favoritePalettes.palettes.filter((p) => p.id !== palette.id);
     }
 
-    function removeFavoriteHandler(e: CustomEvent) {
+    function removeFavoriteHandler(e: any) {
         if (e.detail.answer === 'confirm') removeFavorite();
     }
 
@@ -129,8 +129,8 @@
             <PaletteAction icon="fa-regular fa-up-right-and-down-left-from-center text-lg" tooltipParams={{ text: 'Expand' }} on:click={() => (isExpanded = true)}></PaletteAction>
             {#if favoriteControlsVisible}
                 <span class="h-full w-[1px] bg-zinc-100" />
-                <!-- Delete -->
-                <PaletteAction icon="fa-regular fa-xmark text-lg" tooltipParams={{ text: 'Remove favorite' }} dialogParams={{ title: `Remove: ${palette.name}?`, confirmPrompt: 'Remove' }} on:dialoganswer={removeFavoriteHandler}></PaletteAction>
+                <!-- Remove -->
+                <PaletteAction icon="fa-regular fa-xmark text-lg" tooltipParams={{ text: 'Remove favorite' }} type="secondary" dialogParams={{ title: `Remove: '${palette.name}' from favorites?`, confirmPrompt: 'Remove' }} on:dialoganswer={removeFavoriteHandler}></PaletteAction>
             {/if}
         </div>
     </div>

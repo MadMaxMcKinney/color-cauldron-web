@@ -5,9 +5,10 @@ import type { SvelteComponent } from 'svelte';
 interface TooltipOptions {
     text: string;
     offset?: [number, number];
+    touch?: boolean;
 }
 
-export function tooltip(elem: HTMLElement, { text, offset }: TooltipOptions) {
+export function tooltip(elem: HTMLElement, { text, offset, touch }: TooltipOptions) {
     tippy(elem, {
         content: text,
         delay: 300,
@@ -15,7 +16,7 @@ export function tooltip(elem: HTMLElement, { text, offset }: TooltipOptions) {
         theme: 'cauldron',
         hideOnClick: true,
         offset: offset ? offset : [0, -10],
-        touch: false
+        touch: touch ? touch : false
     });
 
     return {

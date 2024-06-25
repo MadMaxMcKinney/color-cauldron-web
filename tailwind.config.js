@@ -55,5 +55,8 @@ export default {
             }
         }
     },
-    plugins: []
+    plugins: [],
+    future: {
+        hoverOnlyWhenSupported: true
+    }
 };
