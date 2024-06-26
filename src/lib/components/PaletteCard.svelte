@@ -98,12 +98,12 @@
     <div class="flex h-[120px] w-full flex-row overflow-hidden">
         {#each palette.colors as color}
             <button
-                class="group flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-110 hover:shadow-xl hover:shadow-[var(--shadow-color)] active:scale-100"
+                class="group flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-110 hover:shadow-xl hover:shadow-[var(--shadow-color)] active:scale-105"
                 style="background-color: {color.hex}; --shadow-color: {color.hex}"
                 on:click={() => copyColor(color)}
                 use:tooltip={{ text: `${color.name} ${color.hex}` }}
             >
-                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl opacity-0 transition-all group-hover:opacity-100"><i class="fa-regular fa-copy" /></span>
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl opacity-0 transition-all group-hover:opacity-100 group-active:opacity-100"><i class="fa-regular fa-copy" /></span>
             </button>
         {/each}
     </div>
@@ -118,19 +118,19 @@
             {#if !favoriteControlsVisible}
                 <!-- Favorite -->
                 {#if isSettingAsFavorite}
-                    <PaletteAction icon="fa-solid fa-heart text-lg" on:click={togglePaletteSavingAsFavorite} tooltipParams={{ text: 'Unfavorite' }}></PaletteAction>
+                    <PaletteAction icon="fa-solid fa-heart text-lg" on:click={togglePaletteSavingAsFavorite} tooltipParams={{ text: 'Unfavorite' }} />
                 {:else}
-                    <PaletteAction icon="fa-regular fa-heart text-lg" tooltipParams={{ text: 'Favorite' }} on:click={togglePaletteSavingAsFavorite}></PaletteAction>
+                    <PaletteAction icon="fa-regular fa-heart text-lg" tooltipParams={{ text: 'Favorite' }} on:click={togglePaletteSavingAsFavorite} />
                 {/if}
             {/if}
             <!-- Download -->
-            <PaletteAction icon="fa-regular fa-download text-lg" on:click={downloadPalette} tooltipParams={{ text: 'Download' }}></PaletteAction>
+            <PaletteAction icon="fa-regular fa-download text-lg" on:click={downloadPalette} tooltipParams={{ text: 'Download' }} />
             <!-- Expand -->
-            <PaletteAction icon="fa-regular fa-up-right-and-down-left-from-center text-lg" tooltipParams={{ text: 'Expand' }} on:click={() => (isExpanded = true)}></PaletteAction>
+            <PaletteAction icon="fa-regular fa-up-right-and-down-left-from-center text-lg" tooltipParams={{ text: 'Expand' }} on:click={() => (isExpanded = true)} />
             {#if favoriteControlsVisible}
                 <span class="h-full w-[1px] bg-zinc-100" />
                 <!-- Remove -->
-                <PaletteAction icon="fa-regular fa-xmark text-lg" tooltipParams={{ text: 'Remove favorite' }} type="secondary" dialogParams={{ title: `Remove: '${palette.name}' from favorites?`, confirmPrompt: 'Remove' }} on:dialoganswer={removeFavoriteHandler}></PaletteAction>
+                <PaletteAction icon="fa-regular fa-xmark text-lg" tooltipParams={{ text: 'Remove favorite' }} type="secondary" dialogParams={{ title: `Remove: '${palette.name}' from favorites?`, confirmPrompt: 'Remove' }} on:dialoganswer={removeFavoriteHandler} />
             {/if}
         </div>
     </div>
@@ -144,11 +144,11 @@
             <div class="flex flex-1 flex-col md:flex-row">
                 {#each palette.colors as color}
                     <button
-                        class="group group relative flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-105 active:scale-100 md:hover:shadow-xl md:hover:shadow-[var(--shadow-color)]"
+                        class="group group relative flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-105 active:scale-[102%] md:hover:shadow-xl md:hover:shadow-[var(--shadow-color)]"
                         style="background-color: {color.hex}; --shadow-color: {color.hex}"
                         on:click={() => copyColor(color)}
                     >
-                        <span class="z-30 flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl opacity-0 transition-all group-hover:opacity-100"><i class="fa-regular fa-copy" /></span>
+                        <span class="z-30 flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl opacity-0 transition-all group-hover:opacity-100 group-active:opacity-100"><i class="fa-regular fa-copy" /></span>
                         <div class="absolute bottom-6 flex flex-col opacity-50 transition-all md:group-hover:bottom-12" style={`color: ${getContrastColorFromHex(color.hex)}`}>
                             <span class="font-bold">{color.hex}</span>
                             <span>{color.name}</span>

@@ -4,6 +4,7 @@
     import Button from '$lib/components/Button.svelte';
     import { favoritePalettes } from '$lib/stores';
 
+    let favButtonMobile: Button;
     let favButton: Button;
 
     let previousPaletteCount = $favoritePalettes.palettes.length || 0;
@@ -11,6 +12,7 @@
     $: {
         if (previousPaletteCount < $favoritePalettes.palettes.length) {
             favButton.notify();
+            favButtonMobile.notify();
         }
         previousPaletteCount = $favoritePalettes.palettes.length;
     }
@@ -25,7 +27,7 @@
             </a>
             <div class="hidden items-center gap-4 md:flex">
                 <Button icon="fa-regular fa-cauldron" layout="icon" href="/brew" />
-                <Button text="Favorites" icon="fa-regular fa-heart" href="/favorites" />
+                <Button text="Favorites" icon="fa-regular fa-heart" href="/favorites" bind:this={favButton} />
             </div>
         </div>
     </Container>
@@ -36,6 +38,6 @@
 <div class="pointer-events-none fixed bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-white to-white/0 md:hidden">
     <div class="flex w-full justify-end gap-4 px-6 py-4">
         <Button icon="fa-regular fa-cauldron" layout="icon" href="/brew" class="pointer-events-auto" />
-        <Button text="Favorites" icon="fa-regular fa-heart" href="/favorites" class="pointer-events-auto" bind:this={favButton} />
+        <Button text="Favorites" icon="fa-regular fa-heart" href="/favorites" class="pointer-events-auto" bind:this={favButtonMobile} />
     </div>
 </div>
