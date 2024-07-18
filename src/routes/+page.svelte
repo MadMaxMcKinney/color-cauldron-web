@@ -17,7 +17,7 @@
                 <source src="https://yhdbff7qdnrdylls.public.blob.vercel-storage.com/cauldron-hero-v3-2JZx5SmfomoctzHXijfBtpsxAljBzC.mp4" type="video/mp4" />
             </video>
             <div class="mt-[160px] grid grid-cols-1 gap-6 sm:mt-[100px] md:grid-cols-2">
-                <OverviewCard title="The only limit is your imagination" description="Powered by GPT-3.5 ML model trained with additional context, brewing a color palette has never been easier." type="imagination" />
+                <OverviewCard title="The only limit is your imagination" description="Powered by an LLM trained with additional context, brewing a color palette has never been easier." type="imagination" />
                 <OverviewCard title="Quickly save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." type="quickly-save" />
                 <OverviewCard title="Accessible API" description="Want to brew some palettes in your own projects? We have an easy to use endpoint that will get you started!" size="double" type="api" />
             </div>

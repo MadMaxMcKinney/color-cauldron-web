@@ -22,14 +22,14 @@ export const GET: RequestHandler = async (event) => {
             {
                 role: 'system',
                 content:
-                    'You are a color specialist. You help people find colors that will work well based on a prompt explaining how they will use the colors. You will respond only with an array of color objects, where each object has a field named hex for the hex value of the color, and another field named name for the name of the color. You will always provide only 5 color objects. Reminder you should only respond with an array. Do not provide any other information.'
+                    'You are a color specialist. You help people find colors that will work well based on a prompt explaining how they will use the colors. You will respond only with an array of color objects, where each object has a field named hex for the hex value of the color, and another field named name for the name of the color. The name of the color should be thematically relevant to the prompts context if possible. You will always provide only 5 color objects. Reminder you should only respond with an array. Do not provide any other information.'
             },
             {
                 role: 'user',
                 content: prompt
             }
         ],
-        model: 'gpt-3.5-turbo'
+        model: 'gpt-4o-mini'
     });
 
     let newPalette: Palette;
