@@ -35,7 +35,7 @@
 
 <!-- Mobile nav bar -->
 <!-- TODO: Make this it's own component -->
-<div class="pointer-events-none fixed bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-white to-white/0 md:hidden">
+<div class="pointer-events-none fixed bottom-0 left-0 right-0 z-20 bg-linear-to-t from-white to-white/0 md:hidden">
     <div class="flex w-full justify-end gap-4 px-6 py-4">
         <Button icon="fa-regular fa-cauldron" layout="icon" href="/brew" class="pointer-events-auto" />
         <Button text="Favorites" icon="fa-regular fa-heart" href="/favorites" class="pointer-events-auto" bind:this={favButtonMobile} />

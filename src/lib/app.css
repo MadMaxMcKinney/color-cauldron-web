@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap') layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.js';
 
 body {
     min-height: 100vh;
@@ -10,6 +10,10 @@ body {
     flex-direction: column;
     scroll-behavior: smooth;
     @apply mb-16 md:mb-0;
+}
+
+button:hover {
+    @apply cursor-pointer;
 }
 
 html,
@@ -22,5 +26,5 @@ body {
 }
 
 .tippy-box[data-theme~='cauldron'] {
-    @apply bg-white text-black font-medium text-sm font-sans border border-zinc-200 shadow-sm rounded-xl;
+    @apply shadow-xs rounded-xl border border-zinc-200 bg-white font-sans text-sm font-medium text-black;
 }

@@ -98,7 +98,7 @@
     <div class="flex h-[120px] w-full flex-row overflow-hidden">
         {#each palette.colors as color}
             <button
-                class="group flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-110 hover:shadow-xl hover:shadow-[var(--shadow-color)] active:scale-105"
+                class="group flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-110 hover:shadow-[var(--shadow-color)] hover:shadow-xl active:scale-105"
                 style="background-color: {color.hex}; --shadow-color: {color.hex}"
                 on:click={() => copyColor(color)}
                 use:tooltip={{ text: `${color.name} ${color.hex}` }}
@@ -110,7 +110,7 @@
     <div class="flex justify-between bg-white">
         <!-- Palette name -->
         <div class="px-4 py-3">
-            <p class="text-lg font-medium leading-tight text-zinc-500">{palette.name}</p>
+            <p class="text-lg leading-tight font-medium text-zinc-500">{palette.name}</p>
         </div>
         <!-- Actions -->
         <!-- Todo: Make these action icons a component -->
@@ -139,12 +139,12 @@
 {#if isExpanded}
     <!-- Large Palette -->
     <Overlay>
-        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="absolute inset-4 flex flex-col overflow-clip rounded-[13px] shadow-md md:inset-24">
+        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="absolute inset-4 flex flex-col overflow-auto rounded-[13px] text-clip shadow-md md:inset-24">
             <!-- Colors -->
             <div class="flex flex-1 flex-col md:flex-row">
                 {#each palette.colors as color}
                     <button
-                        class="group group relative flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-105 active:scale-[102%] md:hover:shadow-xl md:hover:shadow-[var(--shadow-color)]"
+                        class="group group relative flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-105 active:scale-[102%] md:hover:shadow-[var(--shadow-color)] md:hover:shadow-xl"
                         style="background-color: {color.hex}; --shadow-color: {color.hex}"
                         on:click={() => copyColor(color)}
                     >
@@ -158,7 +158,7 @@
             </div>
             <!-- Footer -->
             <footer class="z-20 flex flex-col justify-between gap-4 bg-white px-4 py-3 md:h-[80px] md:flex-row md:items-center">
-                <p class="text-base font-medium leading-tight text-zinc-500 md:text-lg">{palette.name}</p>
+                <p class="text-base leading-tight font-medium text-zinc-500 md:text-lg">{palette.name}</p>
                 <!-- Actions -->
                 <div class="flex gap-4">
                     {#if !favoriteControlsVisible}

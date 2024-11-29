@@ -16,7 +16,7 @@
         <div class="absolute bottom-0 top-0 flex items-center justify-center rounded-l-[13px] bg-white transition-all duration-300 {loading ? 'w-full rounded-[13px]' : 'w-10 md:w-16'}">
             <CauldronLoader {loading} />
         </div>
-        <input type="text" name="prompt" placeholder="Coffee shop for witches" class="ml-10 w-full rounded-none bg-zinc-100 pl-4 focus:outline-none md:ml-16" bind:value />
+        <input type="text" name="prompt" placeholder="Coffee shop for witches" class="ml-10 w-full rounded-none bg-zinc-100 pl-4 focus:outline-hidden md:ml-16" bind:value />
         {#if value.length > 0}
             <button type="button" in:scale={{ duration: 200 }} out:scale={{ duration: 200 }} class="group w-16 bg-transparent" on:click={clear}>
                 <i class="fa-regular fa-x text-zinc-500 transition-opacity group-hover:opacity-60" />
