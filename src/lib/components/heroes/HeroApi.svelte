@@ -36,7 +36,7 @@
         while (true) {
             for (let i = 0; i < searches.length; i++) {
                 search = searches[i].title;
-                await delay(1000)
+                await delay(1000);
                 json = JSON.stringify(searches[i].colors, null, 4);
                 await delay(3000);
             }
@@ -44,19 +44,19 @@
     });
 </script>
 
-<div class="flex flex-col items-center w-full py-12 text-sm md:px-2 lg:text-base md:flex-row">
+<div class="flex w-full flex-col items-center py-12 text-sm md:flex-row md:px-2 lg:text-base">
     <div class="w-full">
-        <span class="p-3 bg-zinc-900 text-zinc-400 font-bold rounded-t-[7px]">GET</span>
-        <div class="text-white flex px-4 py-3 bg-zinc-900 rounded-[7px] whitespace-nowrap">
+        <span class="rounded-t-[7px] bg-zinc-900 p-3 font-bold text-zinc-400">GET</span>
+        <div class="flex rounded-[7px] bg-zinc-900 px-4 py-3 whitespace-nowrap text-white">
             {#key search}
                 <p use:concurrent={{ interval: 30 }}>/api/brew?prompt=<span class="text-green-500">{search}</span></p>
             {/key}
         </div>
     </div>
-    <div class="bg-green-500 flex justify-start items-center h-[100px] w-[1px] md:h-[1px] md:w-full md:mt-6 animate-pulse-intense" />
-    <div class="w-full -mt-5 md:mt-0">
-        <span class="p-3 bg-zinc-100 text-zinc-600 font-bold rounded-t-[7px]">JSON</span>
-        <div class="text-black flex px-4 py-3 bg-zinc-100 rounded-[7px] sm:min-w-[350px] lg:whitespace-nowrap">
+    <div class="animate-pulse-intense flex h-[100px] w-[1px] items-center justify-start bg-green-500 md:mt-6 md:h-[1px] md:w-full" />
+    <div class="-mt-5 w-full md:mt-0">
+        <span class="rounded-t-[7px] bg-zinc-200 p-3 font-bold text-zinc-600">JSON</span>
+        <div class="flex rounded-[7px] bg-zinc-200 px-4 py-3 text-black sm:min-w-[350px] lg:whitespace-nowrap">
             {#key json}
                 <!-- <span><span class="text-green-500">{'{ '}</span><p use:concurrent={{ interval: 30 }}>{json}</p><span class="text-green-500">{' }'}</span></span> -->
                 <p use:concurrent={{ interval: 30 }} class="text-green-600">{'{ '}<span>{json}</span>{' }'}</p>

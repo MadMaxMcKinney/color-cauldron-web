@@ -19,7 +19,7 @@
 </script>
 
 <!-- Primary top nav -->
-<nav class="flex h-[80px] animate-fade-in items-center border-b border-zinc-200 bg-white">
+<nav class="animate-fade-in bg-surface-primary/70 shadow-elevated flex h-[80px] items-center border-b border-b-2 border-white">
     <Container>
         <div class="flex justify-between">
             <a class="flex justify-between transition-all hover:opacity-70" href="/">
@@ -35,7 +35,7 @@
 
 <!-- Mobile nav bar -->
 <!-- TODO: Make this it's own component -->
-<div class="pointer-events-none fixed bottom-0 left-0 right-0 z-20 bg-linear-to-t from-white to-white/0 md:hidden">
+<div class="pointer-events-none fixed right-0 bottom-0 left-0 z-20 bg-linear-to-t from-white to-white/0 md:hidden">
     <div class="flex w-full justify-end gap-4 px-6 py-4">
         <Button icon="fa-regular fa-cauldron" layout="icon" href="/brew" class="pointer-events-auto" />
         <Button text="Favorites" icon="fa-regular fa-heart" href="/favorites" class="pointer-events-auto" bind:this={favButtonMobile} />

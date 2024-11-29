@@ -12,7 +12,7 @@
     --color-bg-primary: #eef1f5;
     --color-surface-primary: #fafafa;
 
-    --shadow-card: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
+    --shadow-elevated: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
 
     --animate-pulse-1: pulse 1s linear infinite;
     --animate-pulse-2: pulse 1.5s linear infinite;

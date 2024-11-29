@@ -21,10 +21,10 @@
     };
 </script>
 
-<div class="flex flex-col gap-4 bg-[#FAFAFA]/75 lg:bg-[#FAFAFA]/60 border-2 border-white shadow-card backdrop-blur-2xl py-6 px-8 rounded-[13px] {sizeClasses[size]}">
-    <h3 class="text-2xl font-serif font-bold text-black">{title}</h3>
+<div class="shadow-elevated bg-surface-primary/70 flex flex-col gap-4 rounded-[13px] border-2 border-white px-8 py-6 backdrop-blur-2xl lg:bg-[#FAFAFA]/60 {sizeClasses[size]}">
+    <h3 class="font-serif text-2xl font-bold text-black">{title}</h3>
     <p class="text-zinc-500 {descriptionTextClasses[size]}">{description}</p>
-    <div class="flex-1 flex items-center justify-center">
+    <div class="flex flex-1 items-center justify-center">
         {#if type == 'quickly-save'}
             <HeroQuicklySave />
         {/if}
