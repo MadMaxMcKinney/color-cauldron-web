@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ['./src/**/*.{html,js,svelte,ts}'],
     theme: {
         extend: {
             fontFamily: {
@@ -9,7 +8,9 @@ export default {
             },
             colors: {
                 'dark-brown': '#3A300A',
-                'brand-green': '#34E776'
+                'brand-green': '#34E776',
+                'bg-primary': '#EEF1F5',
+                'surface-primary': '#FAFAFA'
             },
             keyframes: {
                 bubbleUp: {

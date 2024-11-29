@@ -5,9 +5,9 @@
 </script>
 
 <a
-    class="bg-[#3FF381] border border-white rounded-[13px] h-14 px-6 inline-flex justify-center items-center gap-3 font-medium text-xl leading-none shadow-xl shadow-green-300/75 transition-all hover:bg-[#6dffa2] hover:-translate-y-[2px] hover:shadow-2xl hover:shadow-green-300 focus-visible:outline-offset-4 {$$restProps.class}"
+    class="inline-flex h-14 items-center justify-center gap-3 rounded-[13px] border border-white bg-[#3FF381] px-6 text-xl leading-none font-medium shadow-xl shadow-green-300/75 transition-all hover:-translate-y-[2px] hover:bg-[#6dffa2] hover:shadow-2xl hover:shadow-green-300 focus-visible:outline-offset-4 {$$restProps.class}"
     {href}
 >
-    {text}
     <i class={icon} />
+    {text}
 </a>
