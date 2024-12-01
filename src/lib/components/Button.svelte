@@ -28,16 +28,16 @@
      */
     export function notify() {
         // Get the starting color of the button so that we can animate back to it
-        const startingColor = getComputedStyle(selfRef).backgroundColor;
+        const startingBgColor = getComputedStyle(selfRef).backgroundColor;
         timeline([
             // Animate the button
             [
                 selfRef,
                 {
-                    backgroundColor: [startingColor, '#6dffa2', startingColor],
-                    scale: [1, 1.05, 1]
+                    backgroundColor: [startingBgColor, '#6dffa2', startingBgColor],
+                    scale: [1, 1.1, 1]
                 },
-                { duration: 0.7 }
+                { duration: 1.4 }
             ],
             // Animate the icon
             [
@@ -45,7 +45,7 @@
                 {
                     scale: [1, 1.3, 1]
                 },
-                { duration: 0.8, at: 0 }
+                { duration: 1.2, at: 0 }
             ]
         ]).finished.then(() => {
             // Remove inline styles created by the animation so that the hover effect can work again
@@ -55,7 +55,7 @@
 </script>
 
 {#if href}
-    <a class="{layoutClasses[layout]} {typeClasses[type]} inline-flex items-center justify-center gap-2 rounded-[13px] font-medium leading-none transition-all focus-visible:outline-offset-4 {$$restProps.class}" {id} {href} bind:this={selfRef}>
+    <a class="{layoutClasses[layout]} {typeClasses[type]} inline-flex items-center justify-center gap-2 rounded-[13px] leading-none font-medium transition-all focus-visible:outline-offset-4 {$$restProps.class}" {id} {href} bind:this={selfRef}>
         {#if icon}
             <i class={icon} bind:this={iconRef} />
         {/if}
@@ -64,7 +64,7 @@
         {/if}
     </a>
 {:else}
-    <button class="{layoutClasses[layout]} {typeClasses[type]} inline-flex items-center justify-center gap-2 rounded-[13px] font-medium leading-none transition-all focus-visible:outline-offset-4 {$$restProps.class}" {id} bind:this={selfRef} on:click={() => dispatch('click')}>
+    <button class="{layoutClasses[layout]} {typeClasses[type]} inline-flex items-center justify-center gap-2 rounded-[13px] leading-none font-medium transition-all focus-visible:outline-offset-4 {$$restProps.class}" {id} bind:this={selfRef} on:click={() => dispatch('click')}>
         {#if icon}
             <i class={icon} bind:this={iconRef} />
         {/if}

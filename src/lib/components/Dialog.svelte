@@ -18,10 +18,10 @@
 
 {#if visible}
     <Overlay>
-        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="flex min-w-56 max-w-[400px] flex-col text-clip rounded-[13px] shadow-md md:min-w-[350px]">
+        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="flex max-w-[400px] min-w-56 flex-col rounded-[13px] text-clip shadow-md md:min-w-[350px]">
             <!-- Footer -->
             <header class="flex min-h-[70px] items-center gap-4 bg-white px-6 md:flex-row md:items-center">
-                <p class="text-base font-medium leading-tight text-black md:text-lg">{title}</p>
+                <p class="text-base leading-tight font-medium text-black md:text-lg">{title}</p>
             </header>
             <!-- Footer -->
             <footer class="flex flex-row items-center gap-4 bg-white px-4 py-3 md:h-[80px]">

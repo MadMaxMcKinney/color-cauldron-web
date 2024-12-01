@@ -3,6 +3,7 @@
     import { flip } from 'svelte/animate';
     import PaletteCard from '$lib/components/PaletteCard.svelte';
     import BrewInput from '$lib/components/BrewInput.svelte';
+    import Container from '$lib/components/Container.svelte';
 
     let isFetchingPalette: boolean = false;
     let brewInput: string = '';
@@ -39,31 +40,35 @@
     }
 </script>
 
-<div class="mx-auto flex max-w-[500px] animate-fade-in flex-col px-6">
-    <section class="mt-14 flex flex-col gap-4">
-        <p class="font-serif text-3xl font-bold">Brew a palette</p>
-        <p class="w-full text-base font-medium text-zinc-600 md:text-lg">Describe how you would use the colors, the theme of the colors, or something that makes you think of colors, then sit back and let the magic happen.</p>
-    </section>
-    <div class="mt-10 md:mt-16">
-        <div class="flex flex-col gap-2">
-            <BrewInput bind:value={brewInput} loading={isFetchingPalette} onBrew={() => brew()} />
-            <div class="flex w-full items-center justify-end gap-2">
-                {#if brewInput.length > 80}
-                    <span class="text-sm font-medium text-zinc-500">{brewInput.length}/100</span>
-                {/if}
+<div class="animate-fade-in">
+    <Container size="small" bg="bg-bg-secondary">
+        <div class="my-10">
+            <p class="font-serif text-3xl font-bold">Brew a palette</p>
+            <p class="mt-4 w-full text-base font-medium text-zinc-600 md:text-lg">Describe how you would use the colors, the theme of the colors, or something that makes you think of colors, then sit back and let the magic happen.</p>
+            <div class="mt-10">
+                <div class="flex flex-col gap-2">
+                    <BrewInput bind:value={brewInput} loading={isFetchingPalette} onBrew={() => brew()} />
+                    <div class="flex w-full items-center justify-end gap-2">
+                        {#if brewInput.length > 80}
+                            <span class="text-sm font-medium text-zinc-500">{brewInput.length}/100</span>
+                        {/if}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    {#if palettes.length > 0}
-        <section class="mt-16" in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
-            <p class="mb-6 font-serif text-lg font-bold">Recent creations</p>
-            <div class="flex flex-col gap-8">
-                {#each palettes as palette, index (palette.id)}
-                    <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
-                        <PaletteCard {palette} />
-                    </div>
-                {/each}
-            </div>
-        </section>
-    {/if}
+    </Container>
+    <Container size="small">
+        {#if palettes.length > 0}
+            <section class="mt-16" in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
+                <p class="mb-6 font-serif text-lg font-bold">Recent creations</p>
+                <div class="flex flex-col gap-8">
+                    {#each palettes as palette, index (palette.id)}
+                        <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
+                            <PaletteCard {palette} />
+                        </div>
+                    {/each}
+                </div>
+            </section>
+        {/if}
+    </Container>
 </div>
