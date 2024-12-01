@@ -20,7 +20,7 @@
     };
 </script>
 
-<div class="shadow-elevated bg-surface-primary/70 flex flex-col gap-4 rounded-[13px] border-2 border-white px-8 py-6 backdrop-blur-2xl lg:bg-[#FAFAFA]/60 {sizeClasses[size]}">
+<div class="shadow-elevated bg-surface-primary flex flex-col gap-4 rounded-[13px] border-2 border-white px-8 py-6 backdrop-blur-2xl lg:bg-[#FAFAFA]/60 {sizeClasses[size]}">
     {#if icon}
         <span class="bg-brand-green/15 text-brand-green grid aspect-square w-[40px] place-items-center rounded-xl text-xl">
             <i class={icon} />

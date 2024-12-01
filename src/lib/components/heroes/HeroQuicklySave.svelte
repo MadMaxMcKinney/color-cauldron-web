@@ -6,26 +6,26 @@
     const palettes = [
         ['#FF7518', '#8C6239', '#46281C', '#211E26', '#008080'],
         ['#5D12D2', '#B931FC', '#FF6AC2', '#FFE5E5', '#B0578D'],
-        ['#451952', '#662549', '#AE445A', '#F39F5A', '#FF9B82'],
+        ['#451952', '#662549', '#AE445A', '#F39F5A', '#FF9B82']
     ];
 
     function createPaletteSequence(): TimelineDefinition {
-        let sequence:TimelineDefinition = []
+        let sequence: TimelineDefinition = [];
         const colorTransitionDuration: number = 0.4;
         palettes.forEach((palette, i) => {
             sequence.push(
-                ['#Palette0', { fill: ['white', palettes[i][0]] }, {duration: colorTransitionDuration}],
-                ['#Palette1', { fill: ['white', palettes[i][1]] }, {duration: colorTransitionDuration, at: '-0.1'}],
-                ['#Palette2', { fill: ['white', palettes[i][2]] }, {duration: colorTransitionDuration, at: '-0.1'}],
-                ['#Palette3', { fill: ['white', palettes[i][3]] }, {duration: colorTransitionDuration, at: '-0.1'}],
-                ['#Palette4', { fill: ['white', palettes[i][4]] }, {duration: colorTransitionDuration, at: '-0.1'}],
+                ['#Palette0', { fill: ['white', palettes[i][0]] }, { duration: colorTransitionDuration }],
+                ['#Palette1', { fill: ['white', palettes[i][1]] }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette2', { fill: ['white', palettes[i][2]] }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette3', { fill: ['white', palettes[i][3]] }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette4', { fill: ['white', palettes[i][4]] }, { duration: colorTransitionDuration, at: '-0.1' }],
                 ['#PaletteCopy', { opacity: [0, 1, 0], scale: [1, 1.3, 1] }, { at: '+0.5', endDelay: 5, duration: 3 }],
-                ['#Palette0', { fill: 'white' }, {duration: colorTransitionDuration}],
-                ['#Palette1', { fill: 'white' }, {duration: colorTransitionDuration, at: '-0.1'}],
-                ['#Palette2', { fill: 'white' }, {duration: colorTransitionDuration, at: '-0.1'}],
-                ['#Palette3', { fill: 'white' }, {duration: colorTransitionDuration, at: '-0.1'}],
-                ['#Palette4', { fill: 'white' }, {duration: colorTransitionDuration, at: '-0.1'}],
-            )
+                ['#Palette0', { fill: 'white' }, { duration: colorTransitionDuration }],
+                ['#Palette1', { fill: 'white' }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette2', { fill: 'white' }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette3', { fill: 'white' }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette4', { fill: 'white' }, { duration: colorTransitionDuration, at: '-0.1' }]
+            );
         });
         return sequence;
     }
@@ -36,14 +36,14 @@
 </script>
 
 <svg width="100%" viewBox="0 0 520 224" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="183" y1="20" x2="183" y2="204" stroke="#E4E4E7" />
-    <line x1="346" y1="20" x2="346" y2="204" stroke="#E4E4E7" />
-    <line x1="260.5" y1="20" x2="260.5" y2="204" stroke="#E4E4E7" />
-    <line x1="58.5" y1="72.5" x2="462.5" y2="72.5" stroke="#E4E4E7" />
+    <line x1="183" y1="20" x2="183" y2="204" stroke="#DFDFDF" />
+    <line x1="346" y1="20" x2="346" y2="204" stroke="#DFDFDF" />
+    <line x1="260.5" y1="20" x2="260.5" y2="204" stroke="#DFDFDF" />
+    <line x1="58.5" y1="72.5" x2="462.5" y2="72.5" stroke="#DFDFDF" />
     <line x1="58.5" y1="40.5" x2="462.5" y2="40.5" stroke="#F4F4F5" />
     <line x1="58.5" y1="111.5" x2="462.5" y2="111.5" stroke="#F4F4F5" />
     <line x1="58.5" y1="182.5" x2="462.5" y2="182.5" stroke="#F4F4F5" />
-    <line x1="58.5" y1="151.5" x2="462.5" y2="151.5" stroke="#E4E4E7" />
+    <line x1="58.5" y1="151.5" x2="462.5" y2="151.5" stroke="#DFDFDF" />
     <g clip-path="url(#clip0_90_955)">
         <rect x="98" y="73" width="324" height="78" rx="13" fill="white" />
         <rect width="64.8" height="78" transform="translate(98 73)" fill="#57375D" id="Palette0" />
@@ -61,7 +61,7 @@
         <rect width="64.8" height="78" transform="translate(292.4 73)" fill="#FFC8C8" id="Palette3" />
         <rect width="64.8" height="78" transform="translate(357.2 73)" fill="#FFBB5C" id="Palette4" />
     </g>
-    <rect x="97.5" y="72.5" width="325" height="79" rx="13.5" stroke="#E4E4E7" />
+    <rect x="97.5" y="72.5" width="325" height="79" rx="13.5" stroke="#DFDFDF" />
     <defs>
         <clipPath id="clip0_90_955">
             <rect x="98" y="73" width="324" height="78" rx="13" fill="white" />

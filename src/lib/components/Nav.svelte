@@ -19,7 +19,7 @@
 </script>
 
 <!-- Primary top nav -->
-<nav class="animate-fade-in bg-surface-primary/70 shadow-elevated flex h-[80px] items-center border-b border-b-2 border-white">
+<nav class="animate-fade-in bg-surface-primary shadow-elevated flex h-[80px] items-center border-b border-b-2 border-white">
     <Container>
         <div class="flex justify-between">
             <a class="flex justify-between transition-all hover:opacity-70" href="/">

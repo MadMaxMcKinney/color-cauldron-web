@@ -10,7 +10,8 @@
     --color-dark-brown: #3a300a;
     --color-brand-green: #34e776;
     --color-bg-primary: #eef1f5;
-    --color-surface-primary: #fafafa;
+    --color-bg-secondary: #e0e4ea;
+    --color-surface-primary: rgba(250, 250, 250, 0.7);
 
     --shadow-elevated: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
 
@@ -106,5 +107,5 @@ body {
 }
 
 .tippy-box[data-theme~='cauldron'] {
-    @apply shadow-xs rounded-xl border border-zinc-200 bg-white font-sans text-sm font-medium text-black;
+    @apply rounded-xl border border-zinc-200 bg-white font-sans text-sm font-medium text-black shadow-xs;
 }

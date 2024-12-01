@@ -94,7 +94,7 @@
     }}
 />
 
-<div class="flex flex-col overflow-hidden rounded-[13px] border border-zinc-200">
+<div class="shadow-elevated flex flex-col overflow-hidden rounded-[13px] border-2 border-white">
     <div class="flex h-[120px] w-full flex-row overflow-hidden">
         {#each palette.colors as color}
             <button
@@ -107,7 +107,7 @@
             </button>
         {/each}
     </div>
-    <div class="flex justify-between bg-white">
+    <div class="bg-surface-primary flex justify-between">
         <!-- Palette name -->
         <div class="px-4 py-3">
             <p class="text-lg leading-tight font-medium text-zinc-500">{palette.name}</p>

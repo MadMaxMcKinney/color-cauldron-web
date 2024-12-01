@@ -12,16 +12,16 @@
 </script>
 
 <form on:submit|preventDefault={onBrew}>
-    <div class="relative flex h-14 w-full rounded-[13px] border border-zinc-200 bg-zinc-100 transition-colors {loading ? '' : 'hover:border-black'}">
-        <div class="absolute bottom-0 top-0 flex items-center justify-center rounded-l-[13px] bg-white transition-all duration-300 {loading ? 'w-full rounded-[13px]' : 'w-10 md:w-16'}">
+    <div class="shadow-elevated relative flex h-14 w-full overflow-auto rounded-[13px] border-2 border-white bg-zinc-50 transition-colors {loading ? '' : 'hover:border-brand-green'}">
+        <div class="absolute top-0 bottom-0 flex items-center justify-center bg-white transition-all duration-300 {loading ? 'w-full' : 'w-10 md:w-16'}">
             <CauldronLoader {loading} />
         </div>
-        <input type="text" name="prompt" placeholder="Coffee shop for witches" class="ml-10 w-full rounded-none bg-zinc-100 pl-4 focus:outline-hidden md:ml-16" bind:value />
+        <input type="text" name="prompt" placeholder="Coffee shop for witches" class="ml-10 w-full rounded-none bg-zinc-50 pl-4 focus:outline-hidden md:ml-16" bind:value />
         {#if value.length > 0}
             <button type="button" in:scale={{ duration: 200 }} out:scale={{ duration: 200 }} class="group w-16 bg-transparent" on:click={clear}>
                 <i class="fa-regular fa-x text-zinc-500 transition-opacity group-hover:opacity-60" />
             </button>
         {/if}
-        <button type="submit" class="flex items-center justify-center whitespace-nowrap rounded-r-[13px] bg-[#3FF381] px-4 font-medium transition-all hover:bg-[#6dffa2] focus:outline-offset-4 active:bg-green-300" disabled={loading}>Brew it!</button>
+        <button type="submit" class="flex items-center justify-center bg-[#3FF381] px-4 font-medium whitespace-nowrap transition-all hover:bg-[#6dffa2] focus:outline-offset-4 active:bg-green-300" disabled={loading}>Brew it!</button>
     </div>
 </form>

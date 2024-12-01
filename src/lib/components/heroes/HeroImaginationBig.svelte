@@ -5,14 +5,16 @@
 
     const seq: TimelineDefinition = [
         ['#IconPrompt', { fill: ['black', '#22C55E'] }, { duration: 1 }],
-        ['#Progress1', { transform: 'translate(120px, 0)', opacity: [0, 1, 0] }, { duration: 2 }],
+        ['#PromptText', { opacity: [0, 1, 0] }, { duration: 2, at: 0.7 }],
+        ['#Progress1', { transform: 'translate(120px, 0)', opacity: [0, 1, 0] }, { duration: 2, at: 1 }],
         ['#IconPrompt', { fill: ['black'] }, { duration: 1, at: 1.5 }],
 
         ['#IconCauldron', { fill: ['black', '#22C55E'] }, { duration: 1, at: 2 }],
         ['#Progress2', { transform: 'translate(120px, 0)', opacity: [0, 1, 0] }, { duration: 2 }],
         ['#IconCauldron', { fill: ['black'] }, { duration: 1, at: 3.5 }],
 
-        ['#IconResult', { fill: ['black', '#22C55E', null, 'black'] }, { duration: 3, at: 4 }]
+        ['#IconResult', { fill: ['black', '#22C55E', null, 'black'] }, { duration: 3, at: 4 }],
+        ['#PromptResult', { opacity: [0, 1, 0] }, { duration: 2, at: 4.5 }]
     ];
 
     onMount(() => {
@@ -22,10 +24,10 @@
 
 <svg width="100%" height="180" viewBox="0 0 520 224" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clip-path="url(#clip0_103_172)">
-        <line x1="231.074" y1="-0.800049" x2="231.074" y2="224.8" stroke="#E4E4E7" stroke-width="0.8" />
-        <line x1="372.9" y1="82.974" x2="147.3" y2="82.974" stroke="#E4E4E7" stroke-width="0.8" />
-        <line x1="288.7" y1="-0.800049" x2="288.7" y2="224.8" stroke="#E4E4E7" stroke-width="0.8" />
-        <line x1="372.9" y1="140.6" x2="147.3" y2="140.6" stroke="#E4E4E7" stroke-width="0.8" />
+        <line x1="231.074" y1="-0.800049" x2="231.074" y2="224.8" stroke="#DFDFDF" stroke-width="0.8" />
+        <line x1="372.9" y1="82.974" x2="147.3" y2="82.974" stroke="#DFDFDF" stroke-width="0.8" />
+        <line x1="288.7" y1="-0.800049" x2="288.7" y2="224.8" stroke="#DFDFDF" stroke-width="0.8" />
+        <line x1="372.9" y1="140.6" x2="147.3" y2="140.6" stroke="#DFDFDF" stroke-width="0.8" />
         <rect x="54.6" y="134.6" width="56.4" height="56.4" rx="7.8" fill="white" />
         <g clip-path="url(#clip1_103_172)">
             <path
@@ -34,7 +36,7 @@
                 id="IconPrompt"
             />
         </g>
-        <rect x="54.6" y="134.6" width="56.4" height="56.4" rx="7.8" stroke="#E4E4E7" stroke-width="1.2" />
+        <rect x="54.6" y="134.6" width="56.4" height="56.4" rx="7.8" stroke="#DFDFDF" stroke-width="1.2" />
         <rect x="408.5" y="31.8" width="56.4" height="56.4" rx="7.8" fill="white" />
         <g clip-path="url(#clip2_103_172)">
             <path
@@ -43,9 +45,9 @@
                 id="IconResult"
             />
         </g>
-        <rect x="408.5" y="31.8" width="56.4" height="56.4" rx="7.8" stroke="#E4E4E7" stroke-width="1.2" />
-        <path d="M82.5 134.4V112H229.7" stroke="#E4E4E7" stroke-width="0.8" />
-        <path d="M437 88.8V111.6H290.5" stroke="#E4E4E7" stroke-width="0.8" />
+        <rect x="408.5" y="31.8" width="56.4" height="56.4" rx="7.8" stroke="#DFDFDF" stroke-width="1.2" />
+        <path d="M82.5 134.4V112H229.7" stroke="#DFDFDF" stroke-width="0.8" />
+        <path d="M437 88.8V111.6H290.5" stroke="#DFDFDF" stroke-width="0.8" />
         <rect x="231.7" y="84" width="56.4" height="56.4" rx="7.8" fill="white" />
         <g clip-path="url(#clip3_103_172)">
             <path
@@ -54,9 +56,30 @@
                 id="IconCauldron"
             />
         </g>
-        <rect x="231.7" y="84" width="56.4" height="56.4" rx="7.8" stroke="#E4E4E7" stroke-width="1.2" />
+        <rect x="231.7" y="84" width="56.4" height="56.4" rx="7.8" stroke="#DFDFDF" stroke-width="1.2" />
         <rect x="80" y="111.6" width="24" height="0.8" fill="#16A34A" id="Progress1" />
         <rect x="290" y="111.6" width="24" height="0.8" fill="#16A34A" id="Progress2" />
+        <g filter="url(#filter0_d_103_172)" opacity="0" id="PromptText">
+            <rect x="1" y="94" width="164" height="37" rx="12" fill="white" />
+            <rect x="1.5" y="94.5" width="163" height="36" rx="11.5" stroke="#E4E4E7" />
+            <rect x="13" y="109" width="18" height="7" rx="3.5" fill="#D4D4D8" />
+            <rect x="39" y="109" width="8" height="7" rx="3.5" fill="#D4D4D8" />
+            <rect x="55" y="109" width="12" height="7" rx="3.5" fill="#D4D4D8" />
+            <rect x="75" y="109" width="26" height="7" rx="3.5" fill="#D4D4D8" />
+            <rect x="109" y="109" width="10" height="7" rx="3.5" fill="#D4D4D8" />
+            <rect x="127" y="109" width="18" height="7" rx="3.5" fill="#D4D4D8" />
+        </g>
+        <g filter="url(#filter1_d_103_172)" opacity="0" id="PromptResult">
+            <rect x="355" y="94" width="158" height="37" rx="12" fill="white" />
+            <rect x="355.5" y="94.5" width="157" height="36" rx="11.5" stroke="#E4E4E7" />
+            <g clip-path="url(#clip4_103_172)">
+                <rect width="28" height="21" transform="translate(363 102)" fill="#FF7518" />
+                <rect width="29" height="21" transform="translate(391 102)" fill="#8C6239" />
+                <rect width="28" height="21" transform="translate(420 102)" fill="#46281C" />
+                <rect width="29" height="21" transform="translate(448 102)" fill="#211E26" />
+                <rect width="28" height="21" transform="translate(477 102)" fill="#008080" />
+            </g>
+        </g>
     </g>
     <defs>
         <clipPath id="clip0_103_172">
@@ -70,6 +93,9 @@
         </clipPath>
         <clipPath id="clip3_103_172">
             <rect width="25.2" height="28.8" fill="white" transform="translate(247.3 97.8)" />
+        </clipPath>
+        <clipPath id="clip4_103_172">
+            <rect x="363" y="102" width="142" height="21" rx="7" fill="white" />
         </clipPath>
     </defs>
 </svg>
