@@ -11,9 +11,20 @@
 
     // PROPS
     export let palette: Palette;
-    // Whether the palette is a favorite
     export let favoriteControlsVisible: boolean = false;
+    export let showToolbar: boolean = true;
+    export let size: 'small' | 'default' = 'default';
     /////
+
+    const sizeClasses = {
+        small: 'h-[70px]',
+        default: 'h-[120px]'
+    };
+
+    const iconCopySizeClasses = {
+        small: 'h-8 w-8 text-reg',
+        default: 'h-10 w-10 text-xl'
+    };
 
     // Whether the palette is being set as a favorite, but not yet saved so we don't want to show the additional saved palette controls
     let isSettingAsFavorite: boolean = false;
@@ -94,16 +105,16 @@
     }}
 />
 
-<div class="shadow-elevated flex flex-col overflow-hidden rounded-[13px] border-2 border-white">
-    <div class="flex h-[120px] w-full flex-row overflow-hidden">
+<div class="shadow-elevated flex w-full flex-col overflow-hidden rounded-[13px] border-2 border-white">
+    <div class="flex {sizeClasses[size]} w-full flex-row overflow-hidden">
         {#each palette.colors as color}
             <button
-                class="group flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-110 hover:shadow-[var(--shadow-color)] hover:shadow-xl active:scale-105"
+                class="group flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-110 hover:shadow-[var(--shadow-color)] active:scale-105"
                 style="background-color: {color.hex}; --shadow-color: {color.hex}"
                 on:click={() => copyColor(color)}
                 use:tooltip={{ text: `${color.name} ${color.hex}` }}
             >
-                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl opacity-0 transition-all group-hover:opacity-100 group-active:opacity-100"><i class="fa-regular fa-copy" /></span>
+                <span class="flex {iconCopySizeClasses[size]} items-center justify-center rounded-full bg-white opacity-0 transition-all group-hover:opacity-100 group-active:opacity-100"><i class="fa-regular fa-copy" /></span>
             </button>
         {/each}
     </div>
@@ -113,33 +124,35 @@
             <p class="text-lg leading-tight font-medium text-zinc-500">{palette.name}</p>
         </div>
         <!-- Actions -->
-        <!-- Todo: Make these action icons a component -->
-        <div class="flex">
-            {#if !favoriteControlsVisible}
-                <!-- Favorite -->
-                {#if isSettingAsFavorite}
-                    <PaletteAction icon="fa-solid fa-heart text-lg" on:click={togglePaletteSavingAsFavorite} tooltipParams={{ text: 'Unfavorite' }} />
-                {:else}
-                    <PaletteAction icon="fa-regular fa-heart text-lg" tooltipParams={{ text: 'Favorite' }} on:click={togglePaletteSavingAsFavorite} />
+        {#if showToolbar}
+            <!-- Todo: Make these action icons a component -->
+            <div class="flex">
+                {#if !favoriteControlsVisible}
+                    <!-- Favorite -->
+                    {#if isSettingAsFavorite}
+                        <PaletteAction icon="fa-solid fa-heart text-lg" on:click={togglePaletteSavingAsFavorite} tooltipParams={{ text: 'Unfavorite' }} />
+                    {:else}
+                        <PaletteAction icon="fa-regular fa-heart text-lg" tooltipParams={{ text: 'Favorite' }} on:click={togglePaletteSavingAsFavorite} />
+                    {/if}
                 {/if}
-            {/if}
-            <!-- Download -->
-            <PaletteAction icon="fa-regular fa-download text-lg" on:click={downloadPalette} tooltipParams={{ text: 'Download' }} />
-            <!-- Expand -->
-            <PaletteAction icon="fa-regular fa-up-right-and-down-left-from-center text-lg" tooltipParams={{ text: 'Expand' }} on:click={() => (isExpanded = true)} />
-            {#if favoriteControlsVisible}
-                <span class="h-full w-[1px] bg-zinc-100" />
-                <!-- Remove -->
-                <PaletteAction icon="fa-regular fa-xmark text-lg" tooltipParams={{ text: 'Remove favorite' }} type="secondary" dialogParams={{ title: `Remove: '${palette.name}' from favorites?`, confirmPrompt: 'Remove' }} on:dialoganswer={removeFavoriteHandler} />
-            {/if}
-        </div>
+                <!-- Download -->
+                <PaletteAction icon="fa-regular fa-download text-lg" on:click={downloadPalette} tooltipParams={{ text: 'Download' }} />
+                <!-- Expand -->
+                <PaletteAction icon="fa-regular fa-up-right-and-down-left-from-center text-lg" tooltipParams={{ text: 'Expand' }} on:click={() => (isExpanded = true)} />
+                {#if favoriteControlsVisible}
+                    <span class="h-full w-[1px] bg-zinc-100" />
+                    <!-- Remove -->
+                    <PaletteAction icon="fa-regular fa-xmark text-lg" tooltipParams={{ text: 'Remove favorite' }} type="secondary" dialogParams={{ title: `Remove: '${palette.name}' from favorites?`, confirmPrompt: 'Remove' }} on:dialoganswer={removeFavoriteHandler} />
+                {/if}
+            </div>
+        {/if}
     </div>
 </div>
 
 {#if isExpanded}
     <!-- Large Palette -->
     <Overlay>
-        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="absolute inset-4 flex flex-col overflow-auto rounded-[13px] text-clip shadow-md md:inset-24">
+        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="absolute inset-4 flex flex-col overflow-clip rounded-[13px] text-clip shadow-md md:inset-24">
             <!-- Colors -->
             <div class="flex flex-1 flex-col md:flex-row">
                 {#each palette.colors as color}

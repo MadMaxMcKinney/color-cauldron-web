@@ -18,9 +18,11 @@
         <div class="mt-16">
             {#if $favoritePalettes.palettes.length === 0}
                 <div class="flex flex-col items-center justify-center text-center">
-                    <i class="fa-light fa-palette text-brand-green mb-6 text-[55px]" />
-                    <p class="mb-10 max-w-lg text-xl font-medium text-zinc-500">Looks like there aren’t any favorited palettes yet, why don’t you head over to the cauldron and see what you can brew up!</p>
-                    <Button text="Brew a palette" icon="fa-regular fa-cauldron" href="/brew" />
+                    <span class="bg-brand-green/15 mb-4 flex aspect-square items-center justify-center rounded-3xl p-6">
+                        <i class="fa-solid fa-palette text-brand-green text-[32px]" />
+                    </span>
+                    <p class="mb-10 max-w-lg text-xl font-medium text-zinc-500">Favorite your first palette to get started.</p>
+                    <Button text="Brew a palette" icon="fa-solid fa-cauldron" href="/brew" />
                 </div>
             {:else}
                 <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -32,5 +34,5 @@
                 </div>
             {/if}
         </div>
-    </div></Container
->
+    </div>
+</Container>
