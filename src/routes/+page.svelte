@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="mt-[160px] grid grid-cols-1 gap-6 sm:mt-[100px] md:grid-cols-2">
-                <OverviewCard title="Creatively prompt" description="Powered by an LLM trained with additional context, brewing a color palette has never been easier." type="imagination" icon="fa-solid fa-lightbulb" />
+                <OverviewCard title="Creatively prompt" description="Describe the colors, how you’d use them, or anything that sparks joy and watch the cauldron work!" type="imagination" icon="fa-solid fa-lightbulb" />
                 <OverviewCard title="Save your palettes" description="Copy a color with a single click, or save the whole palette to your device for offline reference." type="quickly-save" icon="fa-solid fa-palette" />
                 <OverviewCard title="Accessible API" description="Want to brew some palettes in your own projects? We have an easy to use endpoint that will get you started!" size="double" type="api" icon="fa-solid fa-webhook" />
             </div>
