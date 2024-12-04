@@ -10,7 +10,7 @@
 </script>
 
 <section class="{bg} flex w-full items-center">
-    <div class="{sizeClass[size]} mx-auto w-full px-6">
+    <div class="{sizeClass[size]} relative mx-auto w-full px-6">
         <slot />
     </div>
 </section>

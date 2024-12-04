@@ -1,13 +1,13 @@
 <script lang="ts">
     import { tooltip, dialog } from '$lib/actions';
     export let icon: string = 'fa-regular fa-heart';
-    export let type: 'primary' | 'secondary' = 'primary';
-    export let tooltipParams: any;
+    export let type: 'primary' | 'danger' = 'primary';
+    export let tooltipParams: TooltipOptions;
     export let dialogParams: any | null = null;
 
     const typeClasses = {
-        primary: 'text-brand-green hover:text-green-200',
-        secondary: 'text-zinc-500 hover:text-zinc-400'
+        primary: 'text-zinc-500 hover:text-brand-green',
+        danger: 'text-red-500 hover:text-red-300'
     };
 </script>
 

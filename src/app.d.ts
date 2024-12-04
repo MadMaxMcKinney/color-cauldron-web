@@ -25,6 +25,12 @@ declare global {
         name: string;
         hex: string;
     };
+
+    interface TooltipOptions {
+        text: string;
+        offset?: [number, number];
+        touch?: boolean;
+    }
 }
 
 export {};

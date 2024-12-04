@@ -45,7 +45,7 @@
     <Container size="small" bg="bg-bg-secondary">
         <div class="my-10">
             <p class="font-serif text-3xl font-bold">Brew a palette</p>
-            <p class="mt-4 w-full text-base font-medium text-zinc-600 md:text-lg">Describe how you would use the colors, the theme of the colors, or something that makes you think of colors, then sit back and let the magic happen.</p>
+            <p class="mt-4 w-full max-w-[450px] text-base text-zinc-600 md:text-lg">Describe the colors, vibes, or use cases, then sit back and let the magic happen.</p>
             <div class="mt-10">
                 <div class="flex flex-col gap-2">
                     <BrewInput bind:value={brewInput} loading={isFetchingPalette} onBrew={() => brew()} />
@@ -60,7 +60,7 @@
     </Container>
     <Container size="small">
         {#if palettes.length > 0}
-            <section class="mt-12 mb-12" in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
+            <section class="mt-12 mb-16" in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
                 <p class="mb-4 font-serif text-lg font-bold">Recent creations</p>
                 <div class="flex flex-col gap-8">
                     {#each palettes as palette, index (palette.id)}

@@ -2,12 +2,12 @@ import tippy from 'tippy.js';
 import Dialog from '$lib/components/Dialog.svelte';
 import type { SvelteComponent } from 'svelte';
 
-interface TooltipOptions {
-    text: string;
-    offset?: [number, number];
-    touch?: boolean;
-}
-
+/**
+ * Create a tooltip for an element
+ * @param elem The element to attach the tooltip to
+ * @param options Parameters for the tooltip
+ * @returns a destroy function to clean up the tooltip
+ */
 export function tooltip(elem: HTMLElement, { text, offset, touch }: TooltipOptions) {
     tippy(elem, {
         content: text,

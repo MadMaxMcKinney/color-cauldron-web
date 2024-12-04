@@ -4,13 +4,13 @@
     const examplePalettes: Palette[] = [
         {
             id: '1',
-            name: 'Example Palette',
+            name: 'Bubble tea unicorn',
             colors: [
-                { hex: '#FF0000', name: 'Red' },
-                { hex: '#00FF00', name: 'Green' },
-                { hex: '#FF00FF', name: 'Magenta' },
-                { hex: '#FFFF00', name: 'Yellow' },
-                { hex: '#0000FF', name: 'Blue' }
+                { hex: '#FFC3D4', name: 'Cotton Candy Pink' },
+                { hex: '#E1BEE7', name: 'Lavender Dream' },
+                { hex: '#A7EEB1', name: 'Mint Whirl' },
+                { hex: '#F8BBD0', name: 'Bubblegum Bliss' },
+                { hex: '#FFEC40', name: 'Unicorn Bliss' }
             ],
             createdAt: new Date()
         },
