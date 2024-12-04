@@ -31,24 +31,24 @@
 
     @keyframes bubble-up {
         0% {
-            transform: 'translateY(10px)';
+            transform: translateY(10px);
             opacity: 0;
         }
         100% {
-            transform: 'translateY(-10px)';
+            transform: translateY(-10px);
             opacity: 1;
         }
     }
 
     @keyframes cauldron-rock {
         0% {
-            transform: 'rotate(-10deg) scaleY(1.1)';
+            transform: rotate(-10deg) scaleY(1.1);
         }
         50% {
-            transform: 'rotate(0) scaleY(1)';
+            transform: rotate(0) scaleY(1);
         }
         100% {
-            transform: 'rotate(10deg) scaleY(1.1)';
+            transform: rotate(10deg) scaleY(1.1);
         }
     }
 
@@ -76,11 +76,11 @@
     @keyframes fade-in-up {
         0% {
             opacity: 0;
-            transform: 'translateY(10px)';
+            transform: translateY(10px);
         }
         100% {
             opacity: 1;
-            transform: 'translateY(0px)';
+            transform: translateY(0px);
         }
     }
 }
