@@ -1,7 +1,7 @@
 <script lang="ts">
     import Container from '$lib/components/Container.svelte';
     import HeroButton from '$lib/components/HeroButton.svelte';
-    import HeroPalettes from '$lib/components/heroes/HeroPalettes.svelte';
+    import HeroPalettes from '$lib/components/hero/HeroPalettes.svelte';
     import OverviewCard from '$lib/components/OverviewCard.svelte';
 </script>
 
@@ -16,7 +16,6 @@
                 <p class="mt-6 max-w-lg text-xl font-medium text-zinc-600">Easily create mystical color palettes simply by describing colors, vibes, or use cases.</p>
                 <div class="mt-10 flex flex-col justify-center gap-4 md:mt-12 md:flex-row">
                     <HeroButton text="Start brewing for free" icon="fa-solid fa-cauldron" href="/brew" />
-                    <!-- <a class="inline-flex h-14 cursor-default items-center justify-center gap-3 rounded-[13px] border border-zinc-400 bg-white px-6 text-xl font-medium leading-none transition-all focus-visible:outline-offset-4" href="#">App Store - coming soon</a> -->
                 </div>
             </div>
             <div class="mt-[100px] grid grid-cols-1 gap-6 md:mt-[160px] md:grid-cols-2">

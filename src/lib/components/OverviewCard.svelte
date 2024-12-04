@@ -1,7 +1,7 @@
 <script lang="ts">
-    import HeroQuicklySave from '$lib/components/heroes/HeroQuicklySave.svelte';
-    import HeroApi from '$lib/components/heroes/HeroApi.svelte';
-    import HeroImaginationBig from '$lib/components/heroes/HeroImaginationBig.svelte';
+    import BentoApi from '$lib/components/bento/BentoApi.svelte';
+    import BentoImaginationBig from '$lib/components/bento/BentoImaginationBig.svelte';
+    import BentoQuicklySave from '$lib/components/bento/BentoQuicklySave.svelte';
 
     export let title: string;
     export let description: string;
@@ -30,13 +30,13 @@
     <p class="text-zinc-500 {descriptionTextClasses[size]}">{description}</p>
     <div class="flex flex-1 items-center justify-center">
         {#if type == 'quickly-save'}
-            <HeroQuicklySave />
+            <BentoQuicklySave />
         {/if}
         {#if type == 'imagination'}
-            <HeroImaginationBig />
+            <BentoImaginationBig />
         {/if}
         {#if type == 'api'}
-            <HeroApi />
+            <BentoApi />
         {/if}
     </div>
 </div>
