@@ -22,7 +22,7 @@
 
 <div class="shadow-elevated bg-surface-primary flex flex-col gap-4 rounded-[13px] border-2 border-white px-8 py-6 backdrop-blur-2xl lg:bg-[#FAFAFA]/60 {sizeClasses[size]}">
     {#if icon}
-        <span class="bg-brand-green/15 text-brand-green grid aspect-square w-[40px] place-items-center rounded-xl text-xl">
+        <span class="bg-brand-green/15 text-brand-green border-brand-green/15 grid aspect-square w-[40px] place-items-center rounded-xl border-2 text-xl">
             <i class={icon} />
         </span>
     {/if}

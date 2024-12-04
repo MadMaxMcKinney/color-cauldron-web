@@ -4,6 +4,7 @@
     import PaletteCard from '$lib/components/PaletteCard.svelte';
     import BrewInput from '$lib/components/BrewInput.svelte';
     import Container from '$lib/components/Container.svelte';
+    import ExamplePalettes from '$lib/components/ExamplePalettes.svelte';
 
     let isFetchingPalette: boolean = false;
     let brewInput: string = '';
@@ -59,8 +60,8 @@
     </Container>
     <Container size="small">
         {#if palettes.length > 0}
-            <section class="mt-16" in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
-                <p class="mb-6 font-serif text-lg font-bold">Recent creations</p>
+            <section class="mt-12 mb-12" in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
+                <p class="mb-4 font-serif text-lg font-bold">Recent creations</p>
                 <div class="flex flex-col gap-8">
                     {#each palettes as palette, index (palette.id)}
                         <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
@@ -70,5 +71,6 @@
                 </div>
             </section>
         {/if}
+        <ExamplePalettes />
     </Container>
 </div>

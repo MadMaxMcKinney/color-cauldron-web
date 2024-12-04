@@ -24,7 +24,7 @@
     --animate-bubble-up-slow: bubble-up 3.5s ease-in-out infinite;
     --animate-cauldron-rock: cauldron-rock 1.5s ease-in-out alternate infinite;
     --animate-pulse-intense: pulse 1s ease-in-out infinite;
-    --animate-fade-in: fade-in 1s ease-in-out;
+    --animate-fade-in: fade-in 0.4s ease-in-out;
     --animate-fade-in-slow: fade-in 2s ease-in-out;
     --animate-fade-in-slower: fade-in 3s ease-in-out;
     --animate-fade-in-up: fade-in-up 1s ease-in-out;
