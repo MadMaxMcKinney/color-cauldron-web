@@ -1,7 +1,45 @@
 <script lang="ts">
-    import { animate, stagger } from 'motion';
+    import { animate, stagger, timeline, type TimelineOptions } from 'motion';
     import { onMount } from 'svelte';
     export let side: 'left' | 'right' = 'left';
+
+    const paletteSets = [
+        [
+            ['#FF7518', '#8C6239', '#46281C', '#211E26', '#008080'],
+            ['#5D12D2', '#B931FC', '#FF6AC2', '#FFE5E5', '#B0578D'],
+            ['#451952', '#662549', '#AE445A', '#F39F5A', '#FF9B82']
+        ],
+        [
+            ['#451952', '#662549', '#AE445A', '#F39F5A', '#FF9B82'],
+            ['#5D12D2', '#B931FC', '#FF6AC2', '#FFE5E5', '#B0578D'],
+            ['#FF7518', '#8C6239', '#46281C', '#211E26', '#008080']
+        ]
+    ];
+
+    function createPaletteSequence(paletteIndex: number, palettes: string[][]) {
+        let sequence: any[] = [];
+        const speed = 0.25;
+        const overlap = 0.1;
+        const linger = 8;
+
+        // Reset between palettes
+        palettes.forEach((paletteColors, i) => {
+            sequence.push(`section${i}`);
+            sequence.push([`#Palette${paletteIndex}Color1`, { fill: ['white'] }, { duration: 1, at: `section${i}` }]);
+            sequence.push([`#Palette${paletteIndex}Color2`, { fill: ['white'] }, { duration: 1, at: `section${i}` }]);
+            sequence.push([`#Palette${paletteIndex}Color3`, { fill: ['white'] }, { duration: 1, at: `section${i}` }]);
+            sequence.push([`#Palette${paletteIndex}Color4`, { fill: ['white'] }, { duration: 1, at: `section${i}` }]);
+            sequence.push([`#Palette${paletteIndex}Color5`, { fill: ['white'] }, { duration: 1, at: `section${i}` }]);
+            sequence.push([`#Palette${paletteIndex}Color1`, { fill: [paletteColors[0]] }, { duration: speed }]);
+            sequence.push([`#Palette${paletteIndex}Color2`, { fill: [paletteColors[1]] }, { duration: speed, at: `-${overlap}` }]);
+            sequence.push([`#Palette${paletteIndex}Color3`, { fill: [paletteColors[2]] }, { duration: speed, at: `-${overlap}` }]);
+            sequence.push([`#Palette${paletteIndex}Color4`, { fill: [paletteColors[3]] }, { duration: speed, at: `-${overlap}` }]);
+            sequence.push([`#Palette${paletteIndex}Color5`, { fill: [paletteColors[4]] }, { duration: speed, at: `-${overlap}` }]);
+            sequence.push([`#Palette${paletteIndex}Color5`, { fill: [paletteColors[4]] }, { duration: linger }]);
+        });
+
+        return sequence;
+    }
 
     onMount(() => {
         // Animate the palettes initially in
@@ -17,6 +55,9 @@
                 })
             }
         );
+        // Animate the palettes infinitely
+        timeline(createPaletteSequence(1, paletteSets[0]), { repeat: Infinity, delay: 5, persist: true } as TimelineOptions);
+        timeline(createPaletteSequence(2, paletteSets[0]), { repeat: Infinity, delay: 2, persist: true } as TimelineOptions);
     });
 </script>
 
@@ -26,11 +67,11 @@
             <g filter="url(#filter0_d_379_1008)">
                 <g clip-path="url(#clip0_379_1008)">
                     <rect x="78" y="4" width="324" height="78" rx="13" fill="white" />
-                    <rect width="64.8" height="78" transform="translate(78 4)" fill="#432E54" />
-                    <rect width="64.8" height="78" transform="translate(142.8 4)" fill="#4B4376" />
-                    <rect width="64.8" height="78" transform="translate(207.6 4)" fill="#AE445A" />
-                    <rect width="64.8" height="78" transform="translate(272.4 4)" fill="#E8BCB9" />
-                    <rect width="64.8" height="78" transform="translate(337.2 4)" fill="#C5A09E" />
+                    <rect width="64.8" height="78" transform="translate(78 4)" fill="#432E54" id="Palette1Color1" />
+                    <rect width="64.8" height="78" transform="translate(142.8 4)" fill="#4B4376" id="Palette1Color2" />
+                    <rect width="64.8" height="78" transform="translate(207.6 4)" fill="#AE445A" id="Palette1Color3" />
+                    <rect width="64.8" height="78" transform="translate(272.4 4)" fill="#E8BCB9" id="Palette1Color4" />
+                    <rect width="64.8" height="78" transform="translate(337.2 4)" fill="#C5A09E" id="Palette1Color5" />
                 </g>
                 <rect x="77" y="3" width="326" height="80" rx="14" stroke="white" stroke-width="2" />
             </g>
@@ -132,11 +173,11 @@
             <g filter="url(#filter0_d_379_1032)">
                 <g clip-path="url(#clip0_379_1032)">
                     <rect x="37" y="131" width="324" height="78" rx="13" fill="white" />
-                    <rect width="64.8" height="78" transform="translate(37 131)" fill="#A5AEBF" />
-                    <rect width="64.8" height="78" transform="translate(101.8 131)" fill="#C5D3E8" />
-                    <rect width="64.8" height="78" transform="translate(166.6 131)" fill="#D1E8C5" />
-                    <rect width="64.8" height="78" transform="translate(231.4 131)" fill="#9EDF9C" />
-                    <rect width="64.8" height="78" transform="translate(296.2 131)" fill="#63825D" />
+                    <rect width="64.8" height="78" transform="translate(37 131)" fill="#A5AEBF" id="Palette2Color1" />
+                    <rect width="64.8" height="78" transform="translate(101.8 131)" fill="#C5D3E8" id="Palette2Color2" />
+                    <rect width="64.8" height="78" transform="translate(166.6 131)" fill="#D1E8C5" id="Palette2Color3" />
+                    <rect width="64.8" height="78" transform="translate(231.4 131)" fill="#9EDF9C" id="Palette2Color4" />
+                    <rect width="64.8" height="78" transform="translate(296.2 131)" fill="#63825D" id="Palette2Color5" />
                 </g>
                 <rect x="36" y="130" width="326" height="80" rx="14" stroke="white" stroke-width="2" />
             </g>
