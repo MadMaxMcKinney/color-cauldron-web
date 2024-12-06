@@ -65,7 +65,7 @@
                 <div class="flex flex-col gap-8">
                     {#each palettes as palette, index (palette.id)}
                         <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
-                            <PaletteCard {palette} />
+                            <PaletteCard {palette} freshlyCreated />
                         </div>
                     {/each}
                 </div>

@@ -1,24 +1,23 @@
 <script lang="ts">
-    import { timeline } from 'motion';
-    import type { TimelineDefinition, TimelineOptions } from 'motion';
+    import { animate } from 'motion';
     import { onMount } from 'svelte';
 
-    const seq: TimelineDefinition = [
-        ['#IconPrompt', { fill: ['black', '#22C55E'] }, { duration: 1 }],
+    const seq: any[] = [
+        ['#IconPrompt', { fill: ['#000', '#22C55E'] }, { duration: 1 }],
         ['#PromptText', { opacity: [0, 1, 0] }, { duration: 2, at: 0.7 }],
-        ['#Progress1', { transform: 'translate(120px, 0)', opacity: [0, 1, 0] }, { duration: 2, at: 1 }],
-        ['#IconPrompt', { fill: ['black'] }, { duration: 1, at: 1.5 }],
+        ['#Progress1', { style: 'transform: translate(120px, 0)', opacity: [0, 1, 0] }, { duration: 2, at: 1 }],
+        ['#IconPrompt', { fill: ['#000'] }, { duration: 1, at: 1.5 }],
 
-        ['#IconCauldron', { fill: ['black', '#22C55E'] }, { duration: 1, at: 2 }],
-        ['#Progress2', { transform: 'translate(120px, 0)', opacity: [0, 1, 0] }, { duration: 2 }],
-        ['#IconCauldron', { fill: ['black'] }, { duration: 1, at: 3.5 }],
+        ['#IconCauldron', { fill: ['#000', '#22C55E'] }, { duration: 1, at: 2 }],
+        ['#Progress2', { style: 'transform: translate(120px, 0)', opacity: [0, 1, 0] }, { duration: 2 }],
+        ['#IconCauldron', { fill: ['#000'] }, { duration: 1, at: 3.5 }],
 
-        ['#IconResult', { fill: ['black', '#22C55E', null, 'black'] }, { duration: 3, at: 4 }],
+        ['#IconResult', { fill: ['#000', '#22C55E', null, '#000'] }, { duration: 3, at: 4 }],
         ['#PromptResult', { opacity: [0, 1, 0] }, { duration: 2, at: 4.5 }]
     ];
 
     onMount(() => {
-        timeline(seq, { loop: Infinity, repeat: Infinity, endDelay: 5 } as TimelineOptions);
+        animate(seq, { repeat: Infinity, repeatDelay: 1 });
     });
 </script>
 
@@ -57,8 +56,8 @@
             />
         </g>
         <rect x="231.7" y="84" width="56.4" height="56.4" rx="7.8" stroke="#DFDFDF" stroke-width="1.2" />
-        <rect x="80" y="111.6" width="24" height="0.8" fill="#16A34A" id="Progress1" />
-        <rect x="290" y="111.6" width="24" height="0.8" fill="#16A34A" id="Progress2" />
+        <rect x="80" y="111" width="24" height="2" fill="#16A34A" id="Progress1" />
+        <rect x="290" y="111" width="24" height="2" fill="#16A34A" id="Progress2" />
         <g filter="url(#filter0_d_103_172)" opacity="0" id="PromptText">
             <rect x="1" y="94" width="164" height="37" rx="12" fill="white" />
             <rect x="1.5" y="94.5" width="163" height="36" rx="11.5" stroke="#E4E4E7" />

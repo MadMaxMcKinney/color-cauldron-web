@@ -1,6 +1,5 @@
 <script lang="ts">
-    import { timeline } from 'motion';
-    import type { TimelineDefinition, TimelineOptions } from 'motion';
+    import { animate, transform, type DynamicAnimationOptions } from 'motion';
     import { onMount } from 'svelte';
 
     const palettes = [
@@ -9,29 +8,29 @@
         ['#451952', '#662549', '#AE445A', '#F39F5A', '#FF9B82']
     ];
 
-    function createPaletteSequence(): TimelineDefinition {
-        let sequence: TimelineDefinition = [];
+    function createPaletteSequence() {
+        let sequence: any[] = [];
         const colorTransitionDuration: number = 0.4;
         palettes.forEach((palette, i) => {
             sequence.push(
-                ['#Palette0', { fill: ['white', palettes[i][0]] }, { duration: colorTransitionDuration }],
-                ['#Palette1', { fill: ['white', palettes[i][1]] }, { duration: colorTransitionDuration, at: '-0.1' }],
-                ['#Palette2', { fill: ['white', palettes[i][2]] }, { duration: colorTransitionDuration, at: '-0.1' }],
-                ['#Palette3', { fill: ['white', palettes[i][3]] }, { duration: colorTransitionDuration, at: '-0.1' }],
-                ['#Palette4', { fill: ['white', palettes[i][4]] }, { duration: colorTransitionDuration, at: '-0.1' }],
-                ['#PaletteCopy', { opacity: [0, 1, 0], scale: [1, 1.3, 1] }, { at: '+0.5', endDelay: 5, duration: 3 }],
-                ['#Palette0', { fill: 'white' }, { duration: colorTransitionDuration }],
-                ['#Palette1', { fill: 'white' }, { duration: colorTransitionDuration, at: '-0.1' }],
-                ['#Palette2', { fill: 'white' }, { duration: colorTransitionDuration, at: '-0.1' }],
-                ['#Palette3', { fill: 'white' }, { duration: colorTransitionDuration, at: '-0.1' }],
-                ['#Palette4', { fill: 'white' }, { duration: colorTransitionDuration, at: '-0.1' }]
+                ['#Palette0', { fill: ['#FFFFFF', palettes[i][0]] }, { duration: colorTransitionDuration }],
+                ['#Palette1', { fill: ['#FFFFFF', palettes[i][1]] }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette2', { fill: ['#FFFFFF', palettes[i][2]] }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette3', { fill: ['#FFFFFF', palettes[i][3]] }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette4', { fill: ['#FFFFFF', palettes[i][4]] }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#PaletteCopy', { opacity: [0, 1, 0] }, { at: '+0.5', duration: 1.8, type: 'spring', stiffness: 300 }],
+                ['#Palette0', { fill: '#FFFFFF' }, { duration: colorTransitionDuration }],
+                ['#Palette1', { fill: '#FFFFFF' }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette2', { fill: '#FFFFFF' }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette3', { fill: '#FFFFFF' }, { duration: colorTransitionDuration, at: '-0.1' }],
+                ['#Palette4', { fill: '#FFFFFF' }, { duration: colorTransitionDuration, at: '-0.1' }]
             );
         });
         return sequence;
     }
 
     onMount(() => {
-        timeline(createPaletteSequence(), { loop: Infinity, repeat: Infinity, endDelay: 5 } as TimelineOptions);
+        animate(createPaletteSequence(), { repeat: Infinity, repeatDelay: 0 } as DynamicAnimationOptions);
     });
 </script>
 
@@ -49,7 +48,7 @@
         <rect width="64.8" height="78" transform="translate(98 73)" fill="#57375D" id="Palette0" />
         <rect width="64.8" height="78" transform="translate(162.8 73)" fill="#FF3FA4" id="Palette1" />
         <rect width="64.8" height="78" transform="translate(227.6 73)" fill="#FF9B82" id="Palette2" />
-        <g id="PaletteCopy" style="opacity: 0; transform-origin: center;">
+        <g id="PaletteCopy" opacity="0" style="transform-origin: center;">
             <rect x="240" y="92" width="40" height="40" rx="20" fill="white" />
             <g clip-path="url(#clip1_90_955)">
                 <path

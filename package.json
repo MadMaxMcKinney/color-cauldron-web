@@ -30,7 +30,7 @@
     "dependencies": {
         "@sveltejs/vite-plugin-svelte": "^3.1.1",
         "@tailwindcss/vite": "^4.0.0-beta.4",
-        "motion": "^10.16.4",
+        "motion": "^11.13.1",
         "openai": "^4.0.0",
         "svelte-component-to-image": "^0.1.0",
         "svelte-french-toast": "^1.2.0",

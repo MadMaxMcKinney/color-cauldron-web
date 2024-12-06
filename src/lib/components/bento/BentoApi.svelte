@@ -30,7 +30,7 @@
         //     [searchElement, { opacity: [0, 1] }, {duration: 3}],
         //     [jsonElement, { opacity: [0, 1] }, {duration: 3}],
         // ];
-        // timeline(seq, { loop: Infinity, repeat: Infinity } as TimelineOptions);
+        // animate(seq, { loop: Infinity, repeat: Infinity } as TimelineOptions);
 
         // infinitely loop through the searches array and update the search and json variables with a delay of 3 seconds
         while (true) {

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { animate, spring, timeline } from 'motion';
+    import { animate, spring } from 'motion';
     import { createEventDispatcher } from 'svelte';
     export let text: string = '';
     export let icon: string = '';
@@ -29,26 +29,29 @@
     export function notify() {
         // Get the starting color of the button so that we can animate back to it
         const startingBgColor = getComputedStyle(selfRef).backgroundColor;
-        timeline([
-            // Animate the button
+        animate(
             [
-                selfRef,
-                {
-                    backgroundColor: [startingBgColor, '#6dffa2', startingBgColor],
-                    scale: [1, 1.1, 1]
-                },
-                { duration: 1.4 }
+                // Animate the button
+                [
+                    selfRef,
+                    {
+                        backgroundColor: [startingBgColor, '#6dffa2', '#6dffa2', startingBgColor],
+                        scale: [1, 1.2, 1]
+                    },
+                    { duration: 0.5 }
+                ],
+                // Animate the icon
+                [
+                    iconRef,
+                    {
+                        scale: [1, 1.3, 1]
+                    },
+                    { duration: 1.2, at: 0 }
+                ]
             ],
-            // Animate the icon
-            [
-                iconRef,
-                {
-                    scale: [1, 1.3, 1]
-                },
-                { duration: 1.2, at: 0 }
-            ]
-        ]).finished.then(() => {
-            // Remove inline styles created by the animation so that the hover effect can work again
+            {}
+        ).then(() => {
+            // Removes the anim styles so the hover still works
             selfRef.removeAttribute('style');
         });
     }

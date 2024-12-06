@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { SvelteComponent, onMount } from 'svelte';
     import toast from 'svelte-french-toast';
     import { dialog, tooltip } from '$lib/actions';
     import { getContrastColorFromHex } from '$lib/utils';
@@ -8,12 +7,15 @@
     import Button from './Button.svelte';
     import Overlay from '$lib/components/utility/Overlay.svelte';
     import PaletteAction from '$lib/components/palette/PaletteAction.svelte';
+    import { onMount } from 'svelte';
+    import { animate, stagger, type DynamicAnimationOptions } from 'motion';
 
     // PROPS
     export let palette: Palette;
     export let favoriteControlsVisible: boolean = false;
     export let showToolbar: boolean = true;
     export let size: 'small' | 'default' = 'default';
+    export let freshlyCreated: boolean = false;
     /////
 
     const sizeClasses = {
@@ -25,6 +27,9 @@
         small: 'h-8 w-8 text-reg',
         default: 'h-10 w-10 text-xl'
     };
+
+    let domColorsContainer: HTMLDivElement;
+    let domPaletteContainer: HTMLDivElement;
 
     // Whether the palette is being set as a favorite, but not yet saved so we don't want to show the additional saved palette controls
     let isSettingAsFavorite: boolean = false;
@@ -96,17 +101,24 @@
     function closeLargePalette(e?: Event) {
         if (isExpanded) isExpanded = false;
     }
+
+    onMount(() => {
+        if (freshlyCreated) {
+            animate(Array.from(domColorsContainer.children), { opacity: [0, 1], scale: [0.9, 1], borderRadius: [300, 0] }, { delay: stagger(0.1, { startDelay: 1 }), duration: 0.1, ease: 'easeOut' }).then(() => {
+                animate(domPaletteContainer, { scale: [1, 1.02, 1] }, { duration: 0.2, delay: 0.1, ease: 'easeOut' });
+            });
+        }
+    });
 </script>
 
 <svelte:window
     on:keydown={(e) => {
-        console.log(e);
         if (e.key == 'Escape') closeLargePalette();
     }}
 />
 
-<div class="shadow-elevated flex w-full flex-col overflow-hidden rounded-[13px] border-2 border-white">
-    <div class="flex {sizeClasses[size]} w-full flex-row overflow-hidden">
+<div class="shadow-elevated flex w-full flex-col overflow-hidden rounded-[13px] border-2 border-white" bind:this={domPaletteContainer}>
+    <div class="flex {sizeClasses[size]} w-full flex-row overflow-hidden" bind:this={domColorsContainer}>
         {#each palette.colors as color}
             <button
                 class="group flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-110 hover:shadow-[var(--shadow-color)] active:scale-105"
