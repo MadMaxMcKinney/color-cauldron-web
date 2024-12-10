@@ -26,8 +26,8 @@
                 <span class="flex items-center gap-2 font-serif text-xl font-bold"><img src={logo} alt="Black cauldron logo" class="h-auto w-[19px]" /> Color Cauldron</span>
             </a>
             <div class="hidden items-center gap-4 md:flex">
-                <Button icon="fa-regular fa-cauldron" layout="icon" href="/brew" />
-                <Button text="Favorites" icon="fa-regular fa-heart" href="/favorites" bind:this={favButton} />
+                <Button icon="fa-solid fa-cauldron" layout="icon" href="/brew" />
+                <Button text="Favorites" icon="fa-solid fa-heart" href="/favorites" bind:this={favButton} />
             </div>
         </div>
     </Container>

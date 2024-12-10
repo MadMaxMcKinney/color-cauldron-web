@@ -16,25 +16,25 @@
         },
         {
             id: '2',
-            name: 'Example Palette 2',
+            name: 'Neo-Tokyo Nights',
             colors: [
-                { hex: '#FF00FF', name: 'Magenta' },
-                { hex: '#FFFF00', name: 'Yellow' },
-                { hex: '#FF00FF', name: 'Magenta' },
-                { hex: '#FFFF00', name: 'Yellow' },
-                { hex: '#00FFFF', name: 'Cyan' }
+                { hex: '#0D0D3F', name: 'Electric Midnight' },
+                { hex: '#F72585', name: 'Neon Magenta' },
+                { hex: '#4361EE', name: 'Cyber Blue' },
+                { hex: '#3A0CA3', name: 'Ultraviolet Glow' },
+                { hex: '#FFD700', name: 'Holo Gold' }
             ],
             createdAt: new Date()
         },
         {
             id: '3',
-            name: 'Example Palette 3',
+            name: 'Forest Serenity',
             colors: [
-                { hex: '#FF0000', name: 'Red' },
-                { hex: '#00FF00', name: 'Green' },
-                { hex: '#FF00FF', name: 'Magenta' },
-                { hex: '#FFFF00', name: 'Yellow' },
-                { hex: '#0000FF', name: 'Blue' }
+                { hex: '#2E7D32', name: 'Evergreen' },
+                { hex: '#6DA34D', name: 'Fern Glow' },
+                { hex: '#A2D9CE', name: 'Tranquil Stream' },
+                { hex: '#FFCC80', name: 'Sunlit Meadow' },
+                { hex: '#FFE4B5', name: 'Morning Mist' }
             ],
             createdAt: new Date()
         }
