@@ -1,12 +1,15 @@
 # color-cauldron-web
 
-![color-cauldron-openg-image](https://github.com/MadMaxMcKinney/color-cauldron-web/assets/1159073/aa7be0e8-91bf-4950-ba18-dc9f84b5317c)
+![color-cauldron-openg-image](https://colorcauldron.app/color-cauldron-openg-image.png)
 
-Easily create mystical color palettes by describing how you would use the colors, then sit back and let the magic happen.
+### Color palettes powered by AI, driven by imagination.
+
+Easily create mystical color palettes simply by describing colors, vibes, or use cases. 
+
 
 # Take a look
 
-You can find this live at [colorcauldron.com](https://colorcauldron.com).
+You can find this live at: [colorcauldron.app](https://colorcauldron.app/).
 
 # API
 
