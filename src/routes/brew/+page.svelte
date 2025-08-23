@@ -41,7 +41,7 @@
     }
 </script>
 
-<div class="animate-fade-in">
+<div class="animate-fade-in flex flex-1 items-center">
     <Container size="small">
         <div class="my-10">
             <!-- Info -->
