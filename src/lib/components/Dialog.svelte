@@ -2,7 +2,7 @@
     import { scale } from 'svelte/transition';
     import Button from '$lib/components/Button.svelte';
     import Overlay from '$lib/components/utility/Overlay.svelte';
-    import { createEventDispatcher, onMount } from 'svelte';
+    import { createEventDispatcher } from 'svelte';
 
     export let title: string = 'Dialog';
     export let confirmPrompt: string = 'Confirm';
@@ -18,7 +18,7 @@
 
 {#if visible}
     <Overlay>
-        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="border-red flex max-w-[400px] min-w-56 flex-col overflow-clip rounded-[13px] border-2 border-white text-clip shadow-md md:min-w-[350px]">
+        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="border-red shadow-elevated flex max-w-[400px] min-w-56 flex-col overflow-clip rounded-[13px] border-2 border-white text-clip md:min-w-[350px]">
             <!-- Header -->
             <header class="bg-surface-primary flex min-h-[70px] items-center gap-4 px-6 md:flex-row md:items-center">
                 <p class="text-base leading-tight font-medium text-black">{title}</p>

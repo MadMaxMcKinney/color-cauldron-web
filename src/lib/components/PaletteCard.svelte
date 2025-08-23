@@ -133,7 +133,7 @@
     <div class="bg-surface-primary flex justify-between">
         <!-- Palette name -->
         <div class="px-4 py-3">
-            <p class="text-lg leading-tight font-medium text-zinc-500">{palette.name}</p>
+            <p class="leading-tight text-black">{palette.name}</p>
         </div>
         <!-- Actions -->
         {#if showToolbar}
@@ -152,7 +152,7 @@
                 <!-- Expand -->
                 <PaletteAction icon="fa-regular fa-up-right-and-down-left-from-center text-lg" tooltipParams={{ text: 'Expand' }} on:click={() => (isExpanded = true)} />
                 {#if favoriteControlsVisible}
-                    <span class="h-full w-[1px] bg-zinc-100" />
+                    <span class="h-full w-[1px] bg-zinc-200/70" />
                     <!-- Remove -->
                     <PaletteAction icon="fa-regular fa-xmark text-lg" tooltipParams={{ text: 'Remove favorite' }} type="danger" dialogParams={{ title: `Remove: '${palette.name}' from favorites?`, confirmPrompt: 'Remove' }} on:dialoganswer={removeFavoriteHandler} />
                 {/if}
@@ -161,10 +161,10 @@
     </div>
 </div>
 
+<!-- Dialog: Large Palette -->
 {#if isExpanded}
-    <!-- Large Palette -->
     <Overlay>
-        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="shadow-elevated absolute inset-4 flex flex-col overflow-clip rounded-[13px] border-2 border-white text-clip md:inset-24">
+        <div in:scale={{ delay: 100, start: 0.8, duration: 300 }} out:scale={{ start: 0.8, duration: 300 }} class="shadow-elevated absolute inset-4 flex flex-col overflow-clip rounded-[13px] border-2 border-white text-clip md:inset-24">
             <!-- Colors -->
             <div class="flex flex-1 flex-col md:flex-row">
                 {#each palette.colors as color}
@@ -179,7 +179,7 @@
             </div>
             <!-- Footer -->
             <footer class="bg-surface-primary z-20 flex flex-col justify-between gap-4 px-4 py-3 md:h-[80px] md:flex-row md:items-center">
-                <p class="text-base leading-tight font-medium text-zinc-500 md:text-lg">{palette.name}</p>
+                <p class="text-base leading-tight text-black md:text-lg">{palette.name}</p>
                 <!-- Actions -->
                 <div class="flex gap-4">
                     {#if !favoriteControlsVisible}
