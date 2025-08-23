@@ -49,9 +49,21 @@
                     <p class="w-full max-w-[550px] text-base text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
                 </div>
             {/if}
+            <!-- Palettes (Mobile) -->
+            {#if palettes.length > 0}
+                <section class="block md:hidden" in:fade={{ duration: 1000, delay: 500 }} bind:this={palettesDiv}>
+                    <div class="flex flex-col gap-8">
+                        {#each palettes as palette, index (palette.id)}
+                            <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
+                                <PaletteCard {palette} freshlyCreated />
+                            </div>
+                        {/each}
+                    </div>
+                </section>
+            {/if}
             <!-- Prompt -->
-            <div class="sticky top-4">
-                <div class="mb-10 flex flex-col gap-2">
+            <div class="sticky bottom-20 md:top-4 md:bottom-auto">
+                <div class="mt-10 flex flex-col gap-2 md:mt-0 md:mb-10">
                     <BrewInput bind:value={brewInput} loading={isFetchingPalette} onBrew={() => brew()} isFloating={hasPalettes} />
                     <div class="flex w-full items-center justify-end gap-2">
                         {#if brewInput.length > 80}
@@ -60,9 +72,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Palettes -->
+            <!-- Palettes (Desktop) -->
             {#if palettes.length > 0}
-                <section in:fade={{ duration: 1000, delay: 500 }} bind:this={palettesDiv}>
+                <section class="hidden md:block" in:fade={{ duration: 1000, delay: 500 }} bind:this={palettesDiv}>
                     <div class="flex flex-col gap-8">
                         {#each palettes as palette, index (palette.id)}
                             <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
