@@ -37,7 +37,7 @@
         <div class="my-10">
             <!-- Info -->
             {#if palettes.length === 0}
-                <div class="flex flex-col items-center text-center" out:blur={{ duration: 800 }}>
+                <div class="flex flex-col items-center text-center" out:slide={{ duration: 2800 }}>
                     <p class="font-serif text-3xl font-bold">Brew a palette</p>
                     <p class="mt-4 w-full max-w-[550px] text-base text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
                 </div>
