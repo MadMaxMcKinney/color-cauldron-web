@@ -42,10 +42,14 @@
 </script>
 
 <div class="animate-fade-in">
-    <Container size="small" bg="bg-bg-secondary">
+    <Container size="small">
         <div class="my-10">
-            <p class="font-serif text-3xl font-bold">Brew a palette</p>
-            <p class="mt-4 w-full max-w-[450px] text-base text-zinc-600 md:text-lg">Describe the colors, vibes, or use cases, then sit back and let the magic happen.</p>
+            <!-- Info -->
+            <div class="flex flex-col items-center text-center">
+                <p class="font-serif text-3xl font-bold">Brew a palette</p>
+                <p class="mt-4 w-full max-w-[550px] text-base text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
+            </div>
+            <!-- Prompt -->
             <div class="mt-10">
                 <div class="flex flex-col gap-2">
                     <BrewInput bind:value={brewInput} loading={isFetchingPalette} onBrew={() => brew()} />
@@ -56,21 +60,19 @@
                     </div>
                 </div>
             </div>
+            <!-- Palettes -->
+            {#if palettes.length > 0}
+                <section class="mt-12 mb-16" in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
+                    <p class="mb-4 font-serif text-lg font-bold">Recent creations</p>
+                    <div class="flex flex-col gap-8">
+                        {#each palettes as palette, index (palette.id)}
+                            <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
+                                <PaletteCard {palette} freshlyCreated />
+                            </div>
+                        {/each}
+                    </div>
+                </section>
+            {/if}
         </div>
-    </Container>
-    <Container size="small">
-        {#if palettes.length > 0}
-            <section class="mt-12 mb-16" in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
-                <p class="mb-4 font-serif text-lg font-bold">Recent creations</p>
-                <div class="flex flex-col gap-8">
-                    {#each palettes as palette, index (palette.id)}
-                        <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
-                            <PaletteCard {palette} freshlyCreated />
-                        </div>
-                    {/each}
-                </div>
-            </section>
-        {/if}
-        <ExamplePalettes />
     </Container>
 </div>
