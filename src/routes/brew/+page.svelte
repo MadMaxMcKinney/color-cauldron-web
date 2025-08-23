@@ -1,10 +1,12 @@
 <script lang="ts">
-    import { blur, fade, slide } from 'svelte/transition';
+    import { fade, slide } from 'svelte/transition';
     import { flip } from 'svelte/animate';
     import PaletteCard from '$lib/components/PaletteCard.svelte';
     import BrewInput from '$lib/components/BrewInput.svelte';
     import Container from '$lib/components/Container.svelte';
+    import { linear, quadInOut } from 'svelte/easing';
     let isFetchingPalette: boolean = false;
+    let hasPalettes: boolean = false;
     let brewInput: string = '';
     let palettes = [] as Palette[];
     let palettesDiv: HTMLElement;
@@ -18,6 +20,9 @@
             method: 'GET'
         });
         let newPalette = await res.json();
+        if (newPalette) hasPalettes = true;
+        // Short delay to allow for animation
+        await new Promise((resolve) => setTimeout(resolve, 500));
         // Svelte doesn't rerender when you push to an array, so we need to create a new array with the new palette
         palettes = [newPalette, ...palettes];
         // Stop the loading animation
@@ -32,12 +37,14 @@
     }
 </script>
 
-<div class="animate-fade-in flex flex-1 items-start transition-all duration-700">
+<div class="animate-fade-in grid flex-1 {hasPalettes ? 'grid-rows-[0fr_auto_0fr]' : 'grid-rows-[1fr_auto_1fr]'} transition-all duration-[1000ms] ease-in-out">
+    <!-- Spacer -->
+    <div></div>
     <Container size="small">
         <div class="flex flex-col py-8">
             <!-- Info -->
-            {#if palettes.length === 0}
-                <div class="mb-8 flex flex-col items-center gap-4 text-center" out:slide={{ duration: 500 }}>
+            {#if !hasPalettes}
+                <div class="mb-8 flex flex-col items-center gap-4 text-center" out:slide={{ duration: 700, easing: quadInOut }}>
                     <p class="font-serif text-3xl font-bold">Brew a palette</p>
                     <p class="w-full max-w-[550px] text-base text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
                 </div>
@@ -55,7 +62,7 @@
             </div>
             <!-- Palettes -->
             {#if palettes.length > 0}
-                <section in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
+                <section in:fade={{ duration: 1000, delay: 500 }} bind:this={palettesDiv}>
                     <div class="flex flex-col gap-8">
                         {#each palettes as palette, index (palette.id)}
                             <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
@@ -67,4 +74,6 @@
             {/if}
         </div>
     </Container>
+    <!-- Spacer -->
+    <div></div>
 </div>
