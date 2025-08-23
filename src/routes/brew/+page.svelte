@@ -50,9 +50,9 @@
                 </div>
             {/if}
             <!-- Prompt -->
-            <div>
+            <div class="sticky top-4">
                 <div class="mb-10 flex flex-col gap-2">
-                    <BrewInput bind:value={brewInput} loading={isFetchingPalette} onBrew={() => brew()} />
+                    <BrewInput bind:value={brewInput} loading={isFetchingPalette} onBrew={() => brew()} isFloating={hasPalettes} />
                     <div class="flex w-full items-center justify-end gap-2">
                         {#if brewInput.length > 80}
                             <span class="text-sm font-medium text-zinc-500">{brewInput.length}/100</span>

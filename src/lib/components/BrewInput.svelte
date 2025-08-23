@@ -5,14 +5,15 @@
     export let value: string;
     export let loading: boolean = false;
     export let onBrew: () => void;
+    export let isFloating: boolean = false;
 
     function clear() {
         value = '';
     }
 </script>
 
-<form on:submit|preventDefault={onBrew} class="sticky top-4">
-    <div class="shadow-elevated relative flex h-14 w-full overflow-auto rounded-[13px] border-2 border-white bg-zinc-100 transition-colors {loading ? '' : 'hover:border-brand-green'}">
+<form on:submit|preventDefault={onBrew}>
+    <div class="relative flex h-14 w-full overflow-auto rounded-[13px] border-2 border-white bg-zinc-100 transition-all {loading ? '' : 'hover:border-brand-green'} {isFloating ? 'shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_2px_0_rgba(0,0,0,0.25)]' : 'shadow-elevated'}">
         <div class="absolute top-0 bottom-0 flex items-center justify-center bg-white transition-all duration-300 {loading ? 'w-full' : 'w-10 md:w-16'}">
             <CauldronLoader {loading} />
         </div>
