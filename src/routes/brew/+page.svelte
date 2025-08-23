@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { fade } from 'svelte/transition';
+    import { fade, slide } from 'svelte/transition';
     import { flip } from 'svelte/animate';
     import PaletteCard from '$lib/components/PaletteCard.svelte';
     import BrewInput from '$lib/components/BrewInput.svelte';
@@ -41,14 +41,16 @@
     }
 </script>
 
-<div class="animate-fade-in flex flex-1 items-center">
+<div class="animate-fade-in flex flex-1 {palettes.length > 0 ? 'items-start' : 'items-center'}">
     <Container size="small">
         <div class="my-10">
             <!-- Info -->
-            <div class="flex flex-col items-center text-center">
-                <p class="font-serif text-3xl font-bold">Brew a palette</p>
-                <p class="mt-4 w-full max-w-[550px] text-base text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
-            </div>
+            {#if palettes.length === 0}
+                <div class="flex flex-col items-center text-center" in:slide={{ duration: 400 }} out:slide={{ duration: 400 }}>
+                    <p class="font-serif text-3xl font-bold">Brew a palette</p>
+                    <p class="mt-4 w-full max-w-[550px] text-base text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
+                </div>
+            {/if}
             <!-- Prompt -->
             <div class="mt-10">
                 <div class="flex flex-col gap-2">
@@ -63,7 +65,6 @@
             <!-- Palettes -->
             {#if palettes.length > 0}
                 <section class="mt-12 mb-16" in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
-                    <p class="mb-4 font-serif text-lg font-bold">Recent creations</p>
                     <div class="flex flex-col gap-8">
                         {#each palettes as palette, index (palette.id)}
                             <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
