@@ -179,7 +179,7 @@
             </div>
             <!-- Footer -->
             <footer class="bg-surface-primary z-20 flex flex-col justify-between gap-4 px-4 py-3 md:h-[80px] md:flex-row md:items-center">
-                <p class="text-base leading-tight text-black md:text-lg">{palette.name}</p>
+                <p class="text-lg leading-tight text-black md:text-base">{palette.name}</p>
                 <!-- Actions -->
                 <div class="flex gap-4">
                     {#if !favoriteControlsVisible}

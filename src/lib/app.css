@@ -86,11 +86,8 @@
 }
 
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
     scroll-behavior: smooth;
-    @apply bg-bg-primary mb-16 md:mb-0;
+    @apply bg-bg-primary flex min-h-[100svh] flex-col;
 }
 
 button:hover {

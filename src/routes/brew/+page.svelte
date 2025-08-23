@@ -61,9 +61,8 @@
                     </div>
                 </section>
             {/if}
-            <!-- Prompt -->
-            <div class="sticky bottom-20 md:top-4 md:bottom-auto">
-                <div class="mt-10 flex flex-col gap-2 md:mt-0 md:mb-10">
+            <div class="{hasPalettes ? 'fixed right-6 bottom-20 left-6' : ''} z-30 block md:sticky md:inset-auto md:top-4">
+                <div class="flex flex-col gap-2 md:mt-0 md:mb-10">
                     <BrewInput bind:value={brewInput} loading={isFetchingPalette} onBrew={() => brew()} isFloating={hasPalettes} />
                     <div class="flex w-full items-center justify-end gap-2">
                         {#if brewInput.length > 80}
