@@ -32,19 +32,19 @@
     }
 </script>
 
-<div class="animate-fade-in flex flex-1 items-center transition-all duration-700">
+<div class="animate-fade-in flex flex-1 items-start transition-all duration-700">
     <Container size="small">
-        <div class="my-10">
+        <div class="flex flex-col py-8">
             <!-- Info -->
             {#if palettes.length === 0}
-                <div class="flex flex-col items-center text-center" out:slide={{ duration: 2800 }}>
+                <div class="mb-8 flex flex-col items-center gap-4 text-center" out:slide={{ duration: 500 }}>
                     <p class="font-serif text-3xl font-bold">Brew a palette</p>
-                    <p class="mt-4 w-full max-w-[550px] text-base text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
+                    <p class="w-full max-w-[550px] text-base text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
                 </div>
             {/if}
             <!-- Prompt -->
-            <div class="mt-10">
-                <div class="flex flex-col gap-2">
+            <div>
+                <div class="mb-10 flex flex-col gap-2">
                     <BrewInput bind:value={brewInput} loading={isFetchingPalette} onBrew={() => brew()} />
                     <div class="flex w-full items-center justify-end gap-2">
                         {#if brewInput.length > 80}
@@ -55,7 +55,7 @@
             </div>
             <!-- Palettes -->
             {#if palettes.length > 0}
-                <section class="mt-12 mb-16" in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
+                <section in:fade={{ duration: 1000, delay: 700 }} bind:this={palettesDiv}>
                     <div class="flex flex-col gap-8">
                         {#each palettes as palette, index (palette.id)}
                             <div in:fade={{ duration: 1000, delay: 700 }} animate:flip={{ duration: 700 }}>
