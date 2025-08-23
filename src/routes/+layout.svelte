@@ -19,7 +19,7 @@
 
 <Nav />
 
-<div class="flex flex-1 flex-col">
+<div class="mb-16 flex flex-1 flex-col">
     <slot />
 </div>
 
