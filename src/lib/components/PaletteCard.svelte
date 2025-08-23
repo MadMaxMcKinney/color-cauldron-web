@@ -8,7 +8,7 @@
     import Overlay from '$lib/components/utility/Overlay.svelte';
     import PaletteAction from '$lib/components/palette/PaletteAction.svelte';
     import { onMount } from 'svelte';
-    import { animate, stagger, type DynamicAnimationOptions } from 'motion';
+    import { animate, stagger } from 'motion';
 
     // PROPS
     export let palette: Palette;
@@ -164,15 +164,11 @@
 {#if isExpanded}
     <!-- Large Palette -->
     <Overlay>
-        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="absolute inset-4 flex flex-col overflow-clip rounded-[13px] text-clip shadow-md md:inset-24">
+        <div in:scale={{ delay: 200, start: 0.8 }} out:scale={{ start: 0.8 }} class="shadow-elevated absolute inset-4 flex flex-col overflow-clip rounded-[13px] border-2 border-white text-clip md:inset-24">
             <!-- Colors -->
             <div class="flex flex-1 flex-col md:flex-row">
                 {#each palette.colors as color}
-                    <button
-                        class="group group relative flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-105 active:scale-[102%] md:hover:shadow-[var(--shadow-color)] md:hover:shadow-xl"
-                        style="background-color: {color.hex}; --shadow-color: {color.hex}"
-                        on:click={() => copyColor(color)}
-                    >
+                    <button class="group group relative flex h-full w-full items-center justify-center transition-all hover:z-10 hover:scale-105 active:scale-[102%] md:hover:shadow-xl" style="background-color: {color.hex}; --shadow-color: {color.hex}" on:click={() => copyColor(color)}>
                         <span class="z-30 flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl opacity-0 transition-all group-hover:opacity-100 group-active:opacity-100"><i class="fa-regular fa-copy" /></span>
                         <div class="absolute bottom-6 flex flex-col opacity-50 transition-all md:group-hover:bottom-12" style={`color: ${getContrastColorFromHex(color.hex)}`}>
                             <span class="font-bold">{color.hex}</span>
@@ -182,7 +178,7 @@
                 {/each}
             </div>
             <!-- Footer -->
-            <footer class="z-20 flex flex-col justify-between gap-4 bg-white px-4 py-3 md:h-[80px] md:flex-row md:items-center">
+            <footer class="bg-surface-primary z-20 flex flex-col justify-between gap-4 px-4 py-3 md:h-[80px] md:flex-row md:items-center">
                 <p class="text-base leading-tight font-medium text-zinc-500 md:text-lg">{palette.name}</p>
                 <!-- Actions -->
                 <div class="flex gap-4">
