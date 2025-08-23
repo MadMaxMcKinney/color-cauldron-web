@@ -1,11 +1,9 @@
 <script lang="ts">
-    import { fade, slide } from 'svelte/transition';
+    import { blur, fade, slide } from 'svelte/transition';
     import { flip } from 'svelte/animate';
     import PaletteCard from '$lib/components/PaletteCard.svelte';
     import BrewInput from '$lib/components/BrewInput.svelte';
     import Container from '$lib/components/Container.svelte';
-    import ExamplePalettes from '$lib/components/ExamplePalettes.svelte';
-
     let isFetchingPalette: boolean = false;
     let brewInput: string = '';
     let palettes = [] as Palette[];
@@ -41,12 +39,12 @@
     }
 </script>
 
-<div class="animate-fade-in flex flex-1 {palettes.length > 0 ? 'items-start' : 'items-center'}">
+<div class="animate-fade-in flex flex-1 items-center transition-all duration-700">
     <Container size="small">
         <div class="my-10">
             <!-- Info -->
             {#if palettes.length === 0}
-                <div class="flex flex-col items-center text-center" in:slide={{ duration: 400 }} out:slide={{ duration: 400 }}>
+                <div class="flex flex-col items-center text-center" out:slide={{ duration: 800 }}>
                     <p class="font-serif text-3xl font-bold">Brew a palette</p>
                     <p class="mt-4 w-full max-w-[550px] text-base text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
                 </div>

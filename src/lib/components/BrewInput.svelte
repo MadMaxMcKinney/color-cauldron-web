@@ -11,7 +11,7 @@
     }
 </script>
 
-<form on:submit|preventDefault={onBrew}>
+<form on:submit|preventDefault={onBrew} class="sticky top-4">
     <div class="shadow-elevated relative flex h-14 w-full overflow-auto rounded-[13px] border-2 border-white bg-zinc-100 transition-colors {loading ? '' : 'hover:border-brand-green'}">
         <div class="absolute top-0 bottom-0 flex items-center justify-center bg-white transition-all duration-300 {loading ? 'w-full' : 'w-10 md:w-16'}">
             <CauldronLoader {loading} />
