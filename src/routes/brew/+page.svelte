@@ -42,12 +42,12 @@
     <!-- Spacer -->
     <div></div>
     <Container size="small">
-        <div class="flex flex-col py-8">
+        <div class="relative flex flex-col py-8">
             <!-- Info -->
             {#if !hasPalettes}
-                <div class="mb-8 flex flex-col items-center gap-4 text-center" out:slide={{ duration: 700, easing: quadInOut }}>
-                    <p class="font-serif text-3xl font-bold">Brew a palette</p>
-                    <p class="w-full max-w-[550px] text-base text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
+                <div class="mb-8 flex flex-col items-center gap-3 text-center" out:slide={{ duration: 700, easing: quadInOut }}>
+                    <p class="font-serif text-2xl font-bold md:text-3xl">Brew a palette</p>
+                    <p class="w-full max-w-[550px] text-sm text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
                 </div>
             {/if}
             <!-- Palettes (Mobile) -->
@@ -70,7 +70,6 @@
                             <span class="text-sm font-medium text-zinc-500">{brewInput.length}/100</span>
                         {/if}
                     </div>
-                    <GridBg />
                 </div>
             </div>
             <!-- Palettes (Desktop) -->
@@ -85,6 +84,7 @@
                     </div>
                 </section>
             {/if}
+            <GridBg class="absolute inset-0 -bottom-8" />
         </div>
     </Container>
     <!-- Spacer -->

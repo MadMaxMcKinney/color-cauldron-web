@@ -1,1 +1,6 @@
-<div class="mask mask-radial-to-90% mask-radial-at-top mask-type-alpha mask-cover absolute top-0 right-0 left-0 -z-30 mx-auto h-[400px] object-cover opacity-90" style={'background: url(/grid-bg.svg)'}></div>
+<script lang="ts">
+    let className: string = '';
+    export { className as class };
+</script>
+
+<div class="mask absolute top-0 right-0 left-0 -z-30 mx-auto mask-radial-to-70% mask-radial-at-center mask-type-alpha mask-cover object-cover opacity-20 {className}" style={'background: url(/grid-bg.svg)'}></div>
