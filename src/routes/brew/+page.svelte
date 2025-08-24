@@ -5,6 +5,7 @@
     import BrewInput from '$lib/components/BrewInput.svelte';
     import Container from '$lib/components/Container.svelte';
     import { linear, quadInOut } from 'svelte/easing';
+    import GridBg from '$lib/components/GridBG.svelte';
     let isFetchingPalette: boolean = false;
     let hasPalettes: boolean = false;
     let brewInput: string = '';
@@ -69,6 +70,7 @@
                             <span class="text-sm font-medium text-zinc-500">{brewInput.length}/100</span>
                         {/if}
                     </div>
+                    <GridBg />
                 </div>
             </div>
             <!-- Palettes (Desktop) -->

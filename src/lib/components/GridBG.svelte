@@ -1,0 +1,1 @@
+<div class="mask mask-radial-to-90% mask-radial-at-top mask-type-alpha mask-cover absolute top-0 right-0 left-0 -z-30 mx-auto h-[400px] object-cover opacity-90" style={'background: url(/grid-bg.svg)'}></div>
