@@ -62,6 +62,7 @@
                     </div>
                 </section>
             {/if}
+            <!-- Brew Input -->
             <div class="{hasPalettes ? 'fixed right-6 bottom-20 left-6' : ''} z-30 block md:sticky md:inset-auto md:top-4">
                 <div class="flex flex-col gap-2 md:mt-0 md:mb-10">
                     <BrewInput bind:value={brewInput} loading={isFetchingPalette} onBrew={() => brew()} isFloating={hasPalettes} />
@@ -84,7 +85,10 @@
                     </div>
                 </section>
             {/if}
-            <GridBg class="absolute inset-0 -bottom-8" />
+            <!-- Grid texture -->
+            {#if !hasPalettes}
+                <GridBg class="absolute inset-0 -bottom-8" />
+            {/if}
         </div>
     </Container>
     <!-- Spacer -->

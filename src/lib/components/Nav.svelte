@@ -37,7 +37,7 @@
 <!-- TODO: Make this it's own component -->
 <div class="pointer-events-none fixed right-0 bottom-0 left-0 z-20 bg-linear-to-t from-white to-white/0 md:hidden">
     <div class="flex w-full justify-end gap-4 px-6 py-4">
-        <Button icon="fa-regular fa-cauldron" layout="icon" href="/brew" class="pointer-events-auto" />
-        <Button text="Favorites" icon="fa-regular fa-heart" href="/favorites" class="pointer-events-auto" bind:this={favButtonMobile} />
+        <Button icon="fa-regular fa-heart" href="/favorites" class="pointer-events-auto" layout="icon" bind:this={favButtonMobile} />
+        <Button text="Brew" icon="fa-regular fa-cauldron" href="/brew" class="pointer-events-auto" />
     </div>
 </div>
