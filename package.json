@@ -31,6 +31,7 @@
         "@formkit/auto-animate": "^0.8.2",
         "@sveltejs/vite-plugin-svelte": "^3.1.1",
         "@tailwindcss/vite": "^4.1.12",
+        "@vercel/analytics": "^1.5.0",
         "motion": "^11.13.1",
         "openai": "^4.0.0",
         "svelte-component-to-image": "^0.1.0",

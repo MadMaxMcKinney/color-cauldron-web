@@ -4,6 +4,12 @@
     import Nav from '$lib/components/Nav.svelte';
     import { Toaster } from 'svelte-french-toast';
     import 'tippy.js/dist/tippy.css';
+    import { injectAnalytics } from '@vercel/analytics/sveltekit';
+    import { onMount } from 'svelte';
+
+    onMount(() => {
+        injectAnalytics();
+    });
 </script>
 
 <svelte:head>
