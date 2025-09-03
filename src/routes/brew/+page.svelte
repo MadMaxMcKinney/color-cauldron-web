@@ -38,7 +38,7 @@
     }
 </script>
 
-<div class="animate-fade-in grid flex-1 {hasPalettes ? 'grid-rows-[0fr_auto_0fr]' : 'grid-rows-[1fr_auto_1fr]'} transition-all duration-[1000ms] ease-in-out">
+<div class="animate-fade-in grid flex-1 {hasPalettes ? 'min-h-[90svh] grid-rows-[0fr_auto_0fr] md:min-h-auto' : 'grid-rows-[1fr_auto_1fr]'} transition-all duration-[1000ms] ease-in-out">
     <!-- Spacer -->
     <div></div>
     <Container size="small">
@@ -47,7 +47,7 @@
             {#if !hasPalettes}
                 <div class="mb-8 flex flex-col items-center gap-3 text-center" out:slide={{ duration: 700, easing: quadInOut }}>
                     <p class="font-serif text-2xl font-bold md:text-3xl">Brew a palette</p>
-                    <p class="w-full max-w-[550px] text-sm text-zinc-600 md:text-lg">Describe the theme of your colors, vibes, or use cases.</p>
+                    <p class="w-full max-w-[550px] text-sm text-zinc-600 md:text-lg">What enchanted hues are you brewing? Describe the theme, vibes, mystical elements or more.</p>
                 </div>
             {/if}
             <!-- Palettes (Mobile) -->

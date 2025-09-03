@@ -19,7 +19,7 @@
 </script>
 
 <!-- Primary top nav -->
-<nav class="animate-fade-in bg-surface-primary shadow-elevated flex h-16 items-center border-b-2 border-white md:h-[80px]">
+<nav class="animate-fade-in bg-surface-primary shadow-elevated z-30 flex h-16 items-center border-b-2 border-white md:h-[80px]">
     <Container>
         <div class="flex justify-between">
             <a class="flex justify-between transition-all hover:opacity-70" href="/">
@@ -29,6 +29,7 @@
                 <Button icon="fa-solid fa-cauldron" layout="icon" href="/brew" />
                 <Button text="Favorites" icon="fa-solid fa-heart" href="/favorites" bind:this={favButton} />
             </div>
+            <div class="flex md:hidden"></div>
         </div>
     </Container>
 </nav>

@@ -87,7 +87,7 @@
 
 body {
     scroll-behavior: smooth;
-    @apply bg-bg-primary flex min-h-[100svh] flex-col;
+    @apply bg-bg-primary flex min-h-[100svh] flex-col overflow-x-clip;
 }
 
 button:hover {
